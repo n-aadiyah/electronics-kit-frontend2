@@ -52,16 +52,15 @@ const Navbar = () => {
                 </Link>
                 )}
                 <Link className="nav-link-custom d-flex align-items-center gap-1" to="/products">
-                  <i class="bi bi-bag-heart"></i> <span>Shop</span>
+                  <i className="bi bi-bag-heart"></i><span>Shop</span>
                 </Link>
   <Link className="nav-link-custom d-flex align-items-center gap-1" to="/orders">
     <i className="bi bi-box"></i> <span>Orders</span>
   </Link>
   <Link className="btn my-account-btn fw-bold" to="/login">
-    <i class="bi bi-person-check"></i> <span>My account</span>
+    <span>My account</span>
   </Link>
 </nav>
-
       </div>
     </header>
   );

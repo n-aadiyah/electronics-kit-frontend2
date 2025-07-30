@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // ✅ import navigate
 import Navbar from "../components/Navbar";
-
 const Products = () => {
   const navigate = useNavigate(); // ✅ initialize navigate
   const products = [
@@ -51,28 +50,27 @@ const Products = () => {
       : products.filter((p) => p.category === selectedCategory);
 
   return (
+    
     <div style={{ paddingTop: "120px", width: "100%", overflowX: "hidden" }}>
       <Navbar />
-
       <main className="container py-5">
         <h2 className="text-center mb-4 fw-bold">All Electronics Kits</h2>
 
         {/* Category Tabs */}
-        <div className="d-flex justify-content-center border-bottom mb-4">
-         <ul className="d-flex gap-4 list-unstyled justify-content-center">
-  {categories.map((cat) => (
-    <li key={cat}>
-      <button
-        onClick={() => setSelectedCategory(cat)}
-        className={`category-tab ${selectedCategory === cat ? "active" : ""
-  }`}
-      >
-        {cat}
-      </button>
-    </li>
-  ))}
-</ul>
-        </div>
+   <div className="d-flex justify-content-center border-bottom mb-4">
+  <ul className=" nav nav-tabs">
+    {categories.map((cat) => (
+      <li className="nav-item" key={cat}>
+        <button
+          className={`nav-link ${selectedCategory === cat ? "active" : ""}`}
+          onClick={() => setSelectedCategory(cat)}
+        >
+          {cat}
+        </button>
+      </li>
+    ))}
+  </ul>
+  </div>
         {/* Product List */}
         <div className="row">
           {filteredProducts.length > 0 ? (
