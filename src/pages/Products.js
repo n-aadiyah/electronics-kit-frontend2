@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ import navigate
 import Navbar from "../components/Navbar";
 
 const Products = () => {
+  const navigate = useNavigate(); // ✅ initialize navigate
   const products = [
     {
       id: 1,
@@ -57,25 +59,20 @@ const Products = () => {
 
         {/* Category Tabs */}
         <div className="d-flex justify-content-center border-bottom mb-4">
-          <ul className="nav gap-4">
-            {categories.map((cat) => (
-              <li key={cat} className="nav-item">
-                <button
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`nav-link border-bottom pb-2 ${
-                    selectedCategory === cat
-                      ? "fw-bold border-dark text-dark"
-                      : "text-muted border-transparent"
-                  }`}
-                  style={{ background: "none" }}
-                >
-                  {cat}
-                </button>
-              </li>
-            ))}
-          </ul>
+         <ul className="d-flex gap-4 list-unstyled justify-content-center">
+  {categories.map((cat) => (
+    <li key={cat}>
+      <button
+        onClick={() => setSelectedCategory(cat)}
+        className={`category-tab ${selectedCategory === cat ? "active" : ""
+  }`}
+      >
+        {cat}
+      </button>
+    </li>
+  ))}
+</ul>
         </div>
-
         {/* Product List */}
         <div className="row">
           {filteredProducts.length > 0 ? (
@@ -91,7 +88,7 @@ const Products = () => {
                   <div className="card-body">
                     <h5 className="card-title">{product.title}</h5>
                     <p className="card-text">{product.description}</p>
-                    <button className="btn custom-view-btn w-100 fw-bold">
+                   <button className="btn custom-view-btn w-100 fw-bold" onClick={() => navigate(`/product/${product.id}`)}>
                       View Details
                     </button>
                   </div>
