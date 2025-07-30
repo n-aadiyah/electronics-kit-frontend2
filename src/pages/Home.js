@@ -34,9 +34,6 @@ const Home = () => {
       </div>
     </div>
   </section>
-
-
-
           {/* Why Choose Us */}
           <section className="mb-5">
             <h2 className="fw-bold mb-4 text-center">Why Choose Us?</h2>
