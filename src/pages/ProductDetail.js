@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { CartContext } from "../context/CartContext"; // ✅ Add this line
 
 const dummyProducts = [
   {
@@ -59,10 +60,17 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useContext(CartContext); // ✅ Add this line
+
   const product = dummyProducts.find((p) => p.id === parseInt(id));
 
   const increaseQty = () => setQuantity((prev) => prev + 1);
   const decreaseQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const handleAddToCart = () => {
+    addToCart(product);       // ✅ Add product to cart
+    navigate("/cart");        // ✅ Navigate to cart page
+  };
 
   if (!product) {
     return (
@@ -81,7 +89,6 @@ const ProductDetail = () => {
         </button>
 
         <div className="row">
-          {/* Image Section */}
           <div className="col-md-6 mb-4 mb-md-0">
             <img
               src={product.image}
@@ -90,15 +97,12 @@ const ProductDetail = () => {
             />
           </div>
 
-          {/* Info Section */}
           <div className="col-md-6">
             <h2 className="fw-bold">{product.title}</h2>
             <p className="text-muted">Category: {product.category}</p>
 
-            {/* Price */}
             <h4 className="text-success">₹{product.price}</h4>
 
-            {/* Star Ratings */}
             <div className="d-flex align-items-center gap-2 mb-2">
               {[1, 2, 3, 4, 5].map((i) => (
                 <svg
@@ -116,10 +120,8 @@ const ProductDetail = () => {
               <span className="ms-2 text-muted">{product.reviews} reviews</span>
             </div>
 
-            {/* Description */}
             <p className="my-3">{product.description}</p>
 
-            {/* Quantity Selector (modernized) */}
             <div className="mb-4 d-flex align-items-center gap-3 bg-light px-3 py-2 rounded justify-content-between">
               <p className="mb-0 flex-grow-1 text-dark">Quantity</p>
               <div className="d-flex align-items-center gap-2">
@@ -151,26 +153,30 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Buttons */}
-           <div className="d-flex justify-content-center mb-4">
-  <div className="w-100 px-3" style={{ maxWidth: "600px" }}>
-    <div className="d-flex flex-column gap-3">
-      <button
-        className="btn btn-danger w-100 fw-bold py-2"
-        style={{ borderRadius: "0.5rem" }}
-      >
-        Add to Cart
-      </button>
-      <button
-        className="btn w-100 fw-bold py-2"
-        style={{ backgroundColor: "#f4f0f0", color: "#181111", borderRadius: "0.5rem" }}
-      >
-        Buy Now
-      </button>
-    </div>
-  </div>
-</div>
-            {/* Review Breakdown */}
+            <div className="d-flex justify-content-center mb-4">
+              <div className="w-100 px-3" style={{ maxWidth: "600px" }}>
+                <div className="d-flex flex-column gap-3">
+                  <button
+                    className="btn btn-danger w-100 fw-bold py-2"
+                    style={{ borderRadius: "0.5rem" }}
+                    onClick={handleAddToCart} // ✅ Button click handler
+                  >
+                    Add to Cart
+                  </button>
+                  <button
+                    className="btn w-100 fw-bold py-2"
+                    style={{
+                      backgroundColor: "#f4f0f0",
+                      color: "#181111",
+                      borderRadius: "0.5rem",
+                    }}
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div style={{ maxWidth: "400px" }}>
               {[5, 4, 3, 2, 1].map((star, index) => {
                 const percent = [40, 30, 15, 5, 10][index];
@@ -195,24 +201,24 @@ const ProductDetail = () => {
                   </div>
                 );
               })}
-        
-              {/* Product Information */}
-<h2 className="text-dark fw-bold fs-4 px-1 pt-4 pb-3">Product Information</h2>
-<div className="px-1 pb-4">
-  <div className="row border-top py-3">
-    <div className="col-4 text-secondary small">Brand</div>
-    <div className="col-8 text-dark small">Generic</div>
-  </div>
-  <div className="row border-top py-3">
-    <div className="col-4 text-secondary small">Warranty</div>
-    <div className="col-8 text-dark small">6 months</div>
-  </div>
-  <div className="row border-top py-3">
-    <div className="col-4 text-secondary small">Shipping</div>
-    <div className="col-8 text-dark small">Free Delivery</div>
-  </div>
-</div>
+
+              <h2 className="text-dark fw-bold fs-4 px-1 pt-4 pb-3">Product Information</h2>
+              <div className="px-1 pb-4">
+                <div className="row border-top py-3">
+                  <div className="col-4 text-secondary small">Brand</div>
+                  <div className="col-8 text-dark small">Generic</div>
+                </div>
+                <div className="row border-top py-3">
+                  <div className="col-4 text-secondary small">Warranty</div>
+                  <div className="col-8 text-dark small">6 months</div>
+                </div>
+                <div className="row border-top py-3">
+                  <div className="col-4 text-secondary small">Shipping</div>
+                  <div className="col-8 text-dark small">Free Delivery</div>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
