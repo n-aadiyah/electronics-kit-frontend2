@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CategoryTabs from "../components/CategoryTabs"; // ✅ import
+import './CategoryTabs.css';
+
 const Products = () => {
-  const navigate = useNavigate(); // ✅ initialize navigate
+  const navigate = useNavigate();
   const products = [
     {
       id: 1,
@@ -50,27 +53,18 @@ const Products = () => {
       : products.filter((p) => p.category === selectedCategory);
 
   return (
-    
     <div style={{ paddingTop: "120px", width: "100%", overflowX: "hidden" }}>
       <Navbar />
       <main className="container py-5">
         <h2 className="text-center mb-4 fw-bold">All Electronics Kits</h2>
 
-        {/* Category Tabs */}
-   <div className="d-flex justify-content-center border-bottom mb-4">
-  <ul className=" nav nav-tabs">
-    {categories.map((cat) => (
-      <li className="nav-item" key={cat}>
-        <button
-          className={`nav-link ${selectedCategory === cat ? "active" : ""}`}
-          onClick={() => setSelectedCategory(cat)}
-        >
-          {cat}
-        </button>
-      </li>
-    ))}
-  </ul>
-  </div>
+        {/* ✅ Category Tabs Component */}
+        <CategoryTabs
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+
         {/* Product List */}
         <div className="row">
           {filteredProducts.length > 0 ? (
@@ -86,7 +80,10 @@ const Products = () => {
                   <div className="card-body">
                     <h5 className="card-title">{product.title}</h5>
                     <p className="card-text">{product.description}</p>
-                   <button className="btn custom-view-btn w-100 fw-bold" onClick={() => navigate(`/product/${product.id}`)}>
+                    <button
+                      className="btn custom-view-btn w-100 fw-bold"
+                      onClick={() => navigate(`/product/${product.id}`)}
+                    >
                       View Details
                     </button>
                   </div>
