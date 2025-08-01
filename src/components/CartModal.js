@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import CartModalContent from "./CartModalContent"; // ✅ Used below
-
+import CartPage from "../pages/CartPage";
 const CartModal = ({ show, onHide }) => {
   return (
     <Modal show={show} onHide={onHide} centered size="lg">
@@ -9,7 +8,7 @@ const CartModal = ({ show, onHide }) => {
         <Modal.Title>Your Cart</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <CartModalContent />
+        <CartPage />
       </Modal.Body>
     </Modal>
   );

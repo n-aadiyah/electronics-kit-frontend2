@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { CartContext } from "../context/CartContext";
-import CartPage from "./CartPage";
-import { Modal } from "react-bootstrap";
+import CartModal from "../components/CartModal";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const dummyProducts = [
@@ -62,8 +61,9 @@ const dummyProducts = [
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(1);
   const { addToCart } = useContext(CartContext);
+
+  const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
 
   const product = dummyProducts.find((p) => p.id === parseInt(id));
@@ -73,7 +73,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
-    setShowModal(true);
+    setShowModal(true); // show modal after adding to cart
   };
 
   if (!product) {
@@ -224,22 +224,8 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-
-        {/* Modal for Cart */}
-        {/* 🛒 MODAL USING REACT-BOOTSTRAP */}
-            <Modal
-              show={showModal}
-              onHide={() => setShowModal(false)}
-              centered
-              size="lg"
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>Your Cart</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <CartPage />
-              </Modal.Body>
-            </Modal>
+       {/* ✅ Cart Modal */}
+      <CartModal show={showModal} onHide={() => setShowModal(false)} />
           </div>
         </div>
   );

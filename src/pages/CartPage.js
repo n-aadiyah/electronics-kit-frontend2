@@ -1,64 +1,60 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const { cartItems } = useContext(CartContext);
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const navigate = useNavigate();
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="container mt-5 pt-5 text-center">
+        <h4 className="text-muted">Your cart is currently empty.</h4>
+      </div>
+    );
+  }
+
+  const latestItem = cartItems[cartItems.length - 1];
+  const estimatedTotal = latestItem.price * latestItem.quantity;
 
   return (
     <div className="container mt-5 pt-4 mb-5">
-      <h2 className="text-dark fw-bold fs-4 px-1 pt-4 pb-3">Your Cart</h2>
+      <h2 className="text-dark fw-bold fs-4 mb-4">Your Cart</h2>
 
-      {cartItems.length === 0 ? (
-        <p className="text-muted px-1">Your cart is currently empty.</p>
-      ) : (
-        <div className="row">
-          {/* Cart Items Section */}
-          <div className="col-md-8">
-            {cartItems.map((item, index) => (
-              <div
-                key={index}
-                className="border rounded-2 p-3 mb-4 d-flex align-items-start"
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="me-3 rounded"
-                  style={{ width: "120px", height: "120px", objectFit: "cover" }}
-                />
-                <div>
-                  <h5 className="fw-semibold text-dark mb-1">{item.name}</h5>
-                  <p className="text-muted small mb-2">{item.description}</p>
-                  <div className="fw-bold text-dark">₹{item.price}</div>
-                </div>
-              </div>
-            ))}
+      <div className="card shadow-sm border-0 p-4">
+        <div className="row g-3 align-items-center">
+          <div className="col-md-3 text-center">
+            <img
+              src={latestItem.image}
+              alt={latestItem.name}
+              className="img-fluid rounded"
+              style={{ maxHeight: "150px", objectFit: "cover" }}
+            />
           </div>
 
-          {/* Cart Summary Section */}
-          <div className="col-md-4">
-            <div className="border rounded-2 p-4 bg-light">
-              <h5 className="text-dark fw-bold mb-3">Order Summary</h5>
+          <div className="col-md-6">
+            <h5 className="fw-semibold text-dark mb-1">{latestItem.name}</h5>
+            <p className="text-muted mb-1 small">Category: {latestItem.category}</p>
+            <p className="text-muted mb-1 small">Price: ₹{latestItem.price}</p>
+            <p className="text-muted mb-1 small">Quantity: {latestItem.quantity}</p>
+            <p className="fw-bold text-dark mb-0">Estimated Total: ₹{estimatedTotal}</p>
+          </div>
 
-              <div className="row border-top pt-3">
-                <div className="col-6 text-secondary small">Items</div>
-                <div className="col-6 text-dark small text-end">
-                  {cartItems.length}
-                </div>
-              </div>
-              <div className="row border-top pt-3">
-                <div className="col-6 text-secondary small">Total Price</div>
-                <div className="col-6 text-dark small text-end">₹{totalPrice}</div>
-              </div>
-              <div className="d-grid mt-4">
-                <button className="btn btn-success fw-semibold">Checkout</button>
-              </div>
-            </div>
+          <div className="col-md-3 d-flex flex-column gap-2">
+            <button className="btn btn-success fw-semibold w-100">
+              Checkout
+            </button>
+            <button
+              className="btn btn-outline-primary fw-semibold w-100"
+              onClick={() => navigate("/viewcart")}
+            >
+              View Full Cart
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
-export default CartPage;
 
+export default CartPage;

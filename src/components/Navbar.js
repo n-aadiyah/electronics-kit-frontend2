@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import CartModal from "./CartModal"; // Import CartModal
 
 const Navbar = () => {
   const location = useLocation();
-  const [showCart, setShowCart] = useState(false); // Cart modal toggle state
-
-  const toggleCartModal = () => setShowCart(!showCart);
 
   return (
     <>
@@ -63,11 +59,10 @@ const Navbar = () => {
               <i className="bi bi-box"></i> <span>Orders</span>
             </Link>
 
-            {/* 🛒 Cart Icon */}
-            <button className="btn btn-outline-dark position-relative" onClick={toggleCartModal}>
-              <i className="bi bi-cart3"></i>
-              <span className="ms-1">Cart</span>
-            </button>
+            {/* 🛒 Full Page Cart */}
+            <Link to="/viewcart" className="btn btn-outline-primary">
+              🛒 Basket
+            </Link>
 
             {/* 👤 Account */}
             <Link className="btn my-account-btn fw-bold" to="/login">
@@ -76,12 +71,8 @@ const Navbar = () => {
           </nav>
         </div>
       </header>
-
-      {/* 🔽 Modal Container */}
-      <CartModal show={showCart} onClose={() => setShowCart(false)} />
     </>
   );
 };
+
 export default Navbar;
-
-
