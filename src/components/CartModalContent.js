@@ -17,10 +17,10 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
 
   return (
     <div>
-      <h5 className="mb-4 fw-bold text-center">🛒 Your Cart</h5>
+      <h5 className="mb-4 fw-bold text-center text-dark">🛒 Your Cart</h5>
 
       {lastAddedProductTitle && (
-        <div className="alert alert-success text-center" role="alert">
+        <div className="alert alert-success text-center py-2" role="alert">
           ✅ <strong>{lastAddedProductTitle}</strong> has been added to your cart!
         </div>
       )}
@@ -30,7 +30,7 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
       ) : (
         <>
           {cartItems.map((item) => (
-            <div key={item.id} className="card mb-3 shadow-sm border-0">
+            <div key={item.id} className="card mb-3 border-0 shadow-sm">
               <div className="row g-0 align-items-center">
                 <div className="col-auto">
                   <img
@@ -47,34 +47,42 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
                 </div>
                 <div className="col">
                   <div className="card-body py-2">
-                    <h6 className="card-title fw-semibold mb-1">{item.name}</h6>
+                    <h6 className="card-title fw-semibold mb-1 text-dark">{item.name}</h6>
                     <p className="card-text small mb-1 text-secondary">
                       ₹{item.price} ×{" "}
-                      <span className="badge bg-secondary">{item.quantity}</span>{" "}
+                      <span className="badge bg-light text-dark border">{item.quantity}</span>{" "}
                       = <strong>₹{item.price * item.quantity}</strong>
                     </p>
                   </div>
                 </div>
                 <div className="col-auto pe-3">
                   <button
-                    className="btn btn-sm btn-outline-danger"
+                    className="btn btn-sm btn-outline-secondary"
                     onClick={() => removeFromCart(item.id)}
                   >
-                    Remove
+                    ✖
                   </button>
                 </div>
               </div>
             </div>
           ))}
 
-          <hr />
+          <hr className="my-3" />
           <div className="d-flex justify-content-between px-2 mb-3">
-            <h6 className="fw-bold mb-0">Total</h6>
-            <h6 className="fw-bold mb-0">₹{total}</h6>
+            <h6 className="fw-bold text-dark mb-0">Total</h6>
+            <h6 className="fw-bold text-dark mb-0">₹{total}</h6>
           </div>
 
           <div className="text-center">
-            <button className="btn btn-primary w-100" onClick={handleViewCart}>
+            <button
+              className="btn fw-bold w-100"
+              style={{
+                backgroundColor: "#ff4d4d",
+                color: "#fff",
+                borderRadius: "0.5rem",
+              }}
+              onClick={handleViewCart}
+            >
               View Full Cart
             </button>
           </div>
@@ -83,6 +91,5 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
     </div>
   );
 };
+
 export default CartModalContent;
-
-

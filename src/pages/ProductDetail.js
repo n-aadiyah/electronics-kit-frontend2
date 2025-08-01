@@ -163,18 +163,23 @@ const ProductDetail = () => {
                 <div className="d-flex flex-column gap-3">
                   <button
                     className="btn btn-danger w-100 fw-bold py-2"
-                    style={{ borderRadius: "0.5rem" }}
-                    onClick={handleAddToCart}
-                  >
-                    Add to Cart
-                  </button>
-                  <button
-                    className="btn w-100 fw-bold py-2"
+ style={{
+                  backgroundColor: "#000",
+                  color: "#fff",
+                  borderRadius: "0.70rem",
+                  fontSize: "1.0rem",
+                }}
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </button>
+              <button
+                className="btn w-100 fw-bold py-2"
                     style={{
-                      backgroundColor: "#f4f0f0",
-                      color: "#181111",
-                      borderRadius: "0.5rem",
-                    }}
+                  backgroundColor: "#f4f0f0",
+                  color: "#181111",
+                  borderRadius: "0.70rem",
+                }}
                   >
                     Buy Now
                   </button>

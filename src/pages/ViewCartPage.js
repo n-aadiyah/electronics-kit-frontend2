@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Added
 import { CartContext } from "../context/CartContext";
 
 const ViewCartPage = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const navigate = useNavigate(); // ✅ Added
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -40,29 +42,28 @@ const ViewCartPage = () => {
                 </div>
 
                 {/* Quantity Controls */}
-               {/* Quantity Controls */}
-<div className="d-flex align-items-center gap-3">
-  <button
-    className="btn btn-sm rounded-circle border bg-light fw-bold"
-    style={{ width: "32px", height: "32px" }}
-    onClick={() => updateQuantity(item.id, item.quantity - 1)}
-    disabled={item.quantity <= 1}
-  >
-    −
-  </button>
+                <div className="d-flex align-items-center gap-3">
+                  <button
+                    className="btn btn-sm rounded-circle border bg-light fw-bold"
+                    style={{ width: "32px", height: "32px" }}
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    disabled={item.quantity <= 1}
+                  >
+                    −
+                  </button>
 
-  <span className="fw-semibold text-center" style={{ width: "30px" }}>
-    {item.quantity}
-  </span>
+                  <span className="fw-semibold text-center" style={{ width: "30px" }}>
+                    {item.quantity}
+                  </span>
 
-  <button
-    className="btn btn-sm rounded-circle border bg-light fw-bold"
-    style={{ width: "32px", height: "32px" }}
-    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-  >
-    +
-  </button>
-</div>
+                  <button
+                    className="btn btn-sm rounded-circle border bg-light fw-bold"
+                    style={{ width: "32px", height: "32px" }}
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
 
               {/* Remove Button */}
@@ -104,6 +105,7 @@ const ViewCartPage = () => {
                 padding: "10px",
                 border: "none",
               }}
+              onClick={() => navigate("/checkout")} // ✅ Added
             >
               Proceed to Checkout
             </button>
