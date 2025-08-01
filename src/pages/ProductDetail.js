@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { CartContext } from "../context/CartContext"; // ✅ Add this line
+import { CartContext } from "../context/CartContext";
+import CartPage from "./CartPage";
+import { Modal } from "react-bootstrap";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const dummyProducts = [
   {
@@ -60,7 +63,8 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useContext(CartContext); // ✅ Add this line
+  const { addToCart } = useContext(CartContext);
+  const [showModal, setShowModal] = useState(false);
 
   const product = dummyProducts.find((p) => p.id === parseInt(id));
 
@@ -68,8 +72,8 @@ const ProductDetail = () => {
   const decreaseQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleAddToCart = () => {
-    addToCart(product);       // ✅ Add product to cart
-    navigate("/cart");        // ✅ Navigate to cart page
+    addToCart(product, quantity);
+    setShowModal(true);
   };
 
   if (!product) {
@@ -159,7 +163,7 @@ const ProductDetail = () => {
                   <button
                     className="btn btn-danger w-100 fw-bold py-2"
                     style={{ borderRadius: "0.5rem" }}
-                    onClick={handleAddToCart} // ✅ Button click handler
+                    onClick={handleAddToCart}
                   >
                     Add to Cart
                   </button>
@@ -218,12 +222,27 @@ const ProductDetail = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-      </div>
-    </div>
+
+        {/* Modal for Cart */}
+        {/* 🛒 MODAL USING REACT-BOOTSTRAP */}
+            <Modal
+              show={showModal}
+              onHide={() => setShowModal(false)}
+              centered
+              size="lg"
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Your Cart</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <CartPage />
+              </Modal.Body>
+            </Modal>
+          </div>
+        </div>
   );
 };
-
 export default ProductDetail;
+
