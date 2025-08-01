@@ -15,25 +15,26 @@ const CartPage = () => {
   }
 
   const latestItem = cartItems[cartItems.length - 1];
+  console.log("Latest Item:", latestItem);
+
   const estimatedTotal = latestItem.price * latestItem.quantity;
 
   return (
     <div className="container mt-5 pt-4 mb-5">
-      <h2 className="text-dark fw-bold fs-4 mb-4">Your Cart</h2>
 
       <div className="card shadow-sm border-0 p-4">
         <div className="row g-3 align-items-center">
           <div className="col-md-3 text-center">
             <img
               src={latestItem.image}
-              alt={latestItem.name}
+              alt={latestItem.title}
               className="img-fluid rounded"
               style={{ maxHeight: "150px", objectFit: "cover" }}
             />
           </div>
 
           <div className="col-md-6">
-            <h5 className="fw-semibold text-dark mb-1">{latestItem.name}</h5>
+            <h5 className="fw-semibold text-dark mb-1">{latestItem.title}</h5>
             <p className="text-muted mb-1 small">Category: {latestItem.category}</p>
             <p className="text-muted mb-1 small">Price: ₹{latestItem.price}</p>
             <p className="text-muted mb-1 small">Quantity: {latestItem.quantity}</p>

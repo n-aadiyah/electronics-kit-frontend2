@@ -65,7 +65,7 @@ const ProductDetail = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
-
+  const [lastAddedProductTitle, setLastAddedProductTitle] = useState("");
   const product = dummyProducts.find((p) => p.id === parseInt(id));
 
   const increaseQty = () => setQuantity((prev) => prev + 1);
@@ -73,6 +73,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
+    setLastAddedProductTitle(product.title);
     setShowModal(true); // show modal after adding to cart
   };
 
@@ -225,7 +226,8 @@ const ProductDetail = () => {
           </div>
         </div>
        {/* ✅ Cart Modal */}
-      <CartModal show={showModal} onHide={() => setShowModal(false)} />
+      <CartModal show={showModal} onHide={() => setShowModal(false)}
+       lastAddedProductTitle={lastAddedProductTitle} />
           </div>
         </div>
   );

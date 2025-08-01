@@ -60,7 +60,7 @@ const Navbar = () => {
             </Link>
 
             {/* 🛒 Full Page Cart */}
-            <Link to="/viewcart" className="btn btn-outline-primary">
+            <Link to="/viewcart" className="nav-link-custom d-flex align-items-center gap-1">
               🛒 Basket
             </Link>
 

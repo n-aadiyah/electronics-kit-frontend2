@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
-const CartModalContent = () => {
+const CartModalContent = ({ lastAddedProductTitle }) => {
   const { cartItems, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
 
@@ -18,6 +18,12 @@ const CartModalContent = () => {
   return (
     <div>
       <h5 className="mb-4 fw-bold text-center">🛒 Your Cart</h5>
+
+      {lastAddedProductTitle && (
+        <div className="alert alert-success text-center" role="alert">
+          ✅ <strong>{lastAddedProductTitle}</strong> has been added to your cart!
+        </div>
+      )}
 
       {cartItems.length === 0 ? (
         <p className="text-center text-muted">Your cart is empty.</p>
@@ -77,5 +83,6 @@ const CartModalContent = () => {
     </div>
   );
 };
-
 export default CartModalContent;
+
+
