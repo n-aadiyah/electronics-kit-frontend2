@@ -173,18 +173,29 @@ const ProductDetail = () => {
               >
                 Add to Cart
               </button>
-              <button
-                className="btn w-100 fw-bold py-2"
-                    style={{
-                  backgroundColor: "#f4f0f0",
-                  color: "#181111",
-                  borderRadius: "0.70rem",
-                }}
-            
-              onClick={() => navigate("/checkout")}
-            >
-                    Buy Now
-                  </button>
+            <button
+  className="btn w-100 fw-bold py-2"
+  style={{
+    backgroundColor: "#f4f0f0",
+    color: "#181111",
+    borderRadius: "0.70rem",
+  }}
+  onClick={() =>
+    navigate("/checkout", {
+      state: {
+        buyNowProduct: {
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          quantity: 1,
+        },
+      },
+    })
+  }
+>
+  Buy Now
+</button>
+
                 </div>
               </div>
             </div>

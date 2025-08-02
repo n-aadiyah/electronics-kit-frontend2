@@ -1,11 +1,22 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartContext } from "../context/CartContext";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { cartItems } = useContext(CartContext);
+
+  const buyNowProduct = location.state?.buyNowProduct;
+
+  // Choose products to display in summary
+  const productsToCheckout = buyNowProduct ? [buyNowProduct] : cartItems;
+
+  const subtotal = productsToCheckout.reduce(
+    (total, item) => total + item.price * (item.quantity || 1),
+    0
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,16 +24,12 @@ const CheckoutPage = () => {
     navigate("/");
   };
 
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
   return (
-  <div className="container my-5" style={{ marginTop: "80px" }}>      <div className="row">
+    <div className="container my-5" style={{ marginTop: "80px" }}>
+      <div className="row">
         {/* Left: Shipping Form */}
         <div className="col-lg-8 col-md-8 mb-4">
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit}>
             <h4 className="mb-4">Shipping Information</h4>
             <div className="mb-3">
               <input
@@ -68,31 +75,30 @@ const CheckoutPage = () => {
               />
             </div>
             <button
-  type="submit"
-  className="btn rounded-pill mt-4 w-100"
-  style={{
-    backgroundColor: "#000",
-    color: "#fff",
-    fontWeight: "bold",
-    padding: "10px",
-    border: "none",
-  }}
->
-  Complete Purchase
-</button>
-
+              type="submit"
+              className="btn rounded-pill mt-4 w-100"
+              style={{
+                backgroundColor: "#000",
+                color: "#fff",
+                fontWeight: "bold",
+                padding: "10px",
+                border: "none",
+              }}
+            >
+              Complete Purchase
+            </button>
           </form>
         </div>
 
         {/* Right: Order Summary */}
         <div className="col-md-4 mt-5 mt-md-0">
           <div>
-        <h5 className="mb-3">Order Summary</h5>
-            {cartItems.length === 0 ? (
+            <h5 className="mb-3">Order Summary</h5>
+            {productsToCheckout.length === 0 ? (
               <p className="text-muted">Your cart is empty.</p>
             ) : (
               <>
-                {cartItems.map((item, index) => (
+                {productsToCheckout.map((item, index) => (
                   <div key={index} className="d-flex align-items-center mb-3">
                     <div
                       className="rounded bg-cover bg-center me-3"
@@ -106,7 +112,9 @@ const CheckoutPage = () => {
                     ></div>
                     <div>
                       <p className="mb-0 fw-medium">{item.name}</p>
-                      <small className="text-muted">Quantity: {item.quantity}</small>
+                      <small className="text-muted">
+                        Quantity: {item.quantity || 1}
+                      </small>
                     </div>
                   </div>
                 ))}
