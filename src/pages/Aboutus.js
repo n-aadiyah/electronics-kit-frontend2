@@ -31,12 +31,12 @@ const Aboutus = () => {
   <div className="border-top pt-3">
     <div className="d-flex  mb-2">
       <span className="text-secondary fw-normal me-2">Contact:</span>
-      <span>contact@designco.com</span>
+      <span>contact@maklab.com</span>
     </div>
     <div className="border-top pt-3">
     <div className="d-flex ">
       <span className="text-secondary fw-normal me-2">Address:</span>
-      <span>123 Design Avenue, Creative City, 10001</span>
+      <span>technopark, tvm</span>
     </div>
   </div>
   </div>

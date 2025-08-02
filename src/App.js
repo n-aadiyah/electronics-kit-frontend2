@@ -10,6 +10,7 @@ import CartPage from "./pages/CartPage";
 import CartModal from "./components/CartModal";
 import CheckoutPage from "./pages/CheckoutPage";
 import Aboutus from "./pages/Aboutus";
+import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import './index.css';
@@ -42,6 +43,8 @@ function App() {
               <Route path="/viewcart" element={<ViewCartPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/about" element={<Aboutus />} />
+              <Route path="/contact" element={<ContactUs />} />
+
             </Routes>
           </div>
           <Footer />
