@@ -65,7 +65,7 @@ const Navbar = () => {
             </Link>
 
             {/* 👤 Account */}
-            <Link className="btn my-account-btn fw-bold" to="/login">
+            <Link className="btn my-account-btn fw-bold" to="/auth">
               <i className="bi bi-person-check"></i> <span>My account</span>
             </Link>
           </nav>

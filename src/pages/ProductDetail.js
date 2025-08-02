@@ -180,7 +180,9 @@ const ProductDetail = () => {
                   color: "#181111",
                   borderRadius: "0.70rem",
                 }}
-                  >
+            
+              onClick={() => navigate("/checkout")}
+            >
                     Buy Now
                   </button>
                 </div>

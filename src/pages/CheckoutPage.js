@@ -30,6 +30,7 @@ const CheckoutPage = () => {
                 className="form-control"
                 placeholder="Full name"
                 required
+                style={{ color: "#ff9913" }}
               />
             </div>
             <div className="mb-3">
@@ -66,9 +67,20 @@ const CheckoutPage = () => {
                 required
               />
             </div>
-            <button className="btn btn-primary px-4 py-2 fw-bold" type="submit">
-              Complete Purchase
-            </button>
+            <button
+  type="submit"
+  className="btn rounded-pill mt-4 w-100"
+  style={{
+    backgroundColor: "#000",
+    color: "#fff",
+    fontWeight: "bold",
+    padding: "10px",
+    border: "none",
+  }}
+>
+  Complete Purchase
+</button>
+
           </form>
         </div>
 

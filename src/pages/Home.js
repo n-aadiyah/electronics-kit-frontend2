@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 const Home = () => {
   return (
-    <div style={{ paddingTop: "120px", width: "100%", overflowX: "hidden" }}>
+    <div style={{ paddingTop: "30px", width: "100%", overflowX: "hidden" }}>
       <Navbar />
-
       <div className="home-root" style={{ fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif' }}>
        {/* Hero Section */}
 <main className="container py-5">
