@@ -9,6 +9,7 @@ import ViewCartPage from "./pages/ViewCartPage";
 import CartPage from "./pages/CartPage";
 import CartModal from "./components/CartModal";
 import CheckoutPage from "./pages/CheckoutPage";
+import Aboutus from "./pages/Aboutus";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import './index.css';
@@ -23,9 +24,7 @@ function App() {
     <CartProvider>
       <Router>
         <div className="app-container d-flex flex-column min-vh-100">
-          {/* Pass modal control props to Navbar */}
           <Navbar onShowCart={handleShowCartModal} />
-          {/* Cart Modal visible from anywhere */}
           <CartModal show={showCartModal} onHide={handleHideCartModal} />
           <div
             className="content-wrap flex-grow-1"
@@ -41,7 +40,8 @@ function App() {
               />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/viewcart" element={<ViewCartPage />} />
-<Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/about" element={<Aboutus />} />
             </Routes>
           </div>
           <Footer />
