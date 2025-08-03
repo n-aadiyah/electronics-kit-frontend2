@@ -22,9 +22,10 @@ function AuthPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const url = isLogin
-      ? 'http://localhost:5000/api/login'
-      : 'http://localhost:5000/api/register';
+      ? 'https://electronics-kit-backend-4.onrender.com/api/login'
+      : 'https://electronics-kit-backend-4.onrender.com/api/register';
 
     try {
       const response = await axios.post(url, formData);
@@ -47,10 +48,9 @@ function AuthPage() {
         <div className="row w-100 shadow-lg rounded-4 overflow-hidden" style={{ maxWidth: '900px' }}>
           {/* Form Section */}
           <div className="col-md-7 bg-black px-5 py-4">
-<h2
-  className="fw-bold pb-3"
-  style={{ color: '#81650fff' }} // bright yellow (Bootstrap warning)
->              {isLogin ? 'Welcome back' : 'Create your account'}</h2>
+            <h2 className="fw-bold pb-3" style={{ color: '#81650fff' }}>
+              {isLogin ? 'Welcome back!' : 'Create your account'}
+            </h2>
             <form onSubmit={handleSubmit}>
               {!isLogin && (
                 <div className="mb-3 text-white">
@@ -94,20 +94,22 @@ function AuthPage() {
               </div>
 
               {isLogin && (
-                <p className="auth-forgot  mt-2" style={{ color: '#81650fff' }}>Forgot your password?</p>
+                <p className="auth-forgot mt-2" style={{ color: '#81650fff' }}>
+                  Forgot your password?
+                </p>
               )}
 
-             <button 
-  type="submit"
-  className="btn rounded-pill mt-4 w-100"
-  style={{
-    backgroundColor: "#fff",
-    color: "#000",
-    fontWeight: "bold",
-    padding: "10px",
-    border: "none",
-  }}
->
+              <button
+                type="submit"
+                className="btn rounded-pill mt-4 w-100"
+                style={{
+                  backgroundColor: '#fff',
+                  color: '#000',
+                  fontWeight: 'bold',
+                  padding: '10px',
+                  border: 'none',
+                }}
+              >
                 {isLogin ? 'Log in' : 'Sign up'}
               </button>
             </form>
@@ -118,17 +120,17 @@ function AuthPage() {
             <h4 className="fw-bold text-center">
               {isLogin ? "Don't have an account?" : 'Already have an account?'}
             </h4>
-          <button
-  className="btn rounded-pill mt-4 w-100"
-  style={{
-    backgroundColor: "#000",
-    color: "#fff",
-    fontWeight: "bold",
-    padding: "10px",
-    border: "none",
-  }}
-  onClick={toggleForm}
->
+            <button
+              className="btn rounded-pill mt-4 w-100"
+              style={{
+                backgroundColor: '#000',
+                color: '#fff',
+                fontWeight: 'bold',
+                padding: '10px',
+                border: 'none',
+              }}
+              onClick={toggleForm}
+            >
               {isLogin ? 'Create an account' : 'Login here'}
             </button>
           </div>

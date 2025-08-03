@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import Home from "./pages/Home";
 import AuthPage from './pages/AuthPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import ViewCartPage from "./pages/ViewCartPage";
@@ -40,8 +41,22 @@ function App() {
                 element={<ProductDetail onAddToCart={handleShowCartModal} />}
               />
               <Route path="/cart" element={<CartPage />} />
-              <Route path="/viewcart" element={<ViewCartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
+<Route
+  path="/viewcart"
+  element={
+    <ProtectedRoute>
+      <ViewCartPage />
+    </ProtectedRoute>
+  }
+/>
+<Route 
+  path="/checkout"
+  element={
+    <ProtectedRoute>
+      <CheckoutPage />
+    </ProtectedRoute>
+  }
+/>
               <Route path="/about" element={<Aboutus />} />
               <Route path="/contact" element={<ContactUs />} />
 
