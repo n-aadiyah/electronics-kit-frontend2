@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import axios from "axios";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const ViewCartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);

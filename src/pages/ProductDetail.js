@@ -5,6 +5,7 @@ import { CartContext } from "../context/CartContext";
 import CartModal from "../components/CartModal";
 import axios from "axios";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const ProductDetail = () => {
   const { id } = useParams();

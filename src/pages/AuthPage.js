@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // useAuth hook
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const AuthPage = () => {
   const { login } = useAuth();
@@ -33,8 +34,8 @@ const AuthPage = () => {
     e.preventDefault();
 
     const endpoint = isLogin
-      ? `${process.env.REACT_APP_API_URL}/api/auth/login`
-      : `${process.env.REACT_APP_API_URL}/api/auth/register`;
+      ? `${BASE_URL}/api/auth/login`
+      : `${BASE_URL}/api/auth/register`;
 
     try {
       const response = await axios.post(endpoint, formData);

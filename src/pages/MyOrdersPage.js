@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const MyOrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -16,7 +17,7 @@ const MyOrdersPage = () => {
       }
 
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/myorders`, {
+        const res = await fetch(`${BASE_URL}/api/orders/myorders`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

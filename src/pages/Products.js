@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import CategoryTabs from "../components/CategoryTabs";
 import "./CategoryTabs.css";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Products = () => {
   const navigate = useNavigate();

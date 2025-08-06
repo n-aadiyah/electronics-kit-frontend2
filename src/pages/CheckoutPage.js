@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartContext } from "../context/CartContext";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ const CheckoutPage = () => {
     };
 
     try {
-     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
+     const res = await fetch(`${BASE_URL}/api/orders`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
