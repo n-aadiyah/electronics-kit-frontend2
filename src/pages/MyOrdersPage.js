@@ -8,7 +8,7 @@ const MyOrdersPage = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStoragesession.getItem("token");
 
       if (!token) {
         setError("You must be logged in to view your orders.");

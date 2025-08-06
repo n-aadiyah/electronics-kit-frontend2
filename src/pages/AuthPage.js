@@ -43,7 +43,7 @@ const AuthPage = () => {
 
       if (isLogin) {
         login(response.data.user); // Update context
-        localStorage.setItem("token", response.data.token); // Store token
+        sessionStorage.setItem("token", response.data.token); // Store token
         navigate("/"); // Redirect to home
       } else {
         alert("✅ Registered successfully! Please log in.");

@@ -43,7 +43,7 @@ const CheckoutPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
+    const token = localStoragesession.getItem("token");
     const email = localStorage.getItem("userEmail") || "guest@example.com";
 
     const items = buyNowProduct
