@@ -97,7 +97,7 @@ const CheckoutPage = () => {
       if (res.ok) {
         alert("✅ Order placed successfully!");
         if (!buyNowProduct) clearCart();
-        navigate("/MyOrdersPage");
+        navigate("/MyOrders");
       } else {
         alert("❌ Failed to place order: " + data.message);
       }
