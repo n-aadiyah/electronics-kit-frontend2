@@ -10,6 +10,11 @@ const Navbar = () => {
     setIsAuthenticated(!!token);
   }, [location]); // re-run when route changes
 
+  // ✅ Use the correct environment variable name
+  useEffect(() => {
+    console.log("Base URL:", process.env.REACT_APP_BASE_URL);
+  }, []);
+
   return (
     <header className="px-3 py-2 border-bottom bg-white shadow-sm fixed-top">
       <div className="d-flex justify-content-between align-items-center">
@@ -60,24 +65,18 @@ const Navbar = () => {
           <Link className="nav-link-custom d-flex align-items-center gap-1" to="/products">
             <i className="bi bi-bag-heart"></i> <span>Shop</span>
           </Link>
-          <Link className="nav-link-custom d-flex align-items-center gap-1" to="/orders">
-            <i className="bi bi-box"></i> <span>Orders</span>
-          </Link>
+<Link to="/myorders" className="btn btn-primary">My Orders</Link>
           <Link to="/viewcart" className="nav-link-custom d-flex align-items-center gap-1">
             🛒 Basket
           </Link>
-         <Link
-  className="btn my-account-btn fw-bold"
-  to="/auth"
->
-  <i className="bi bi-person-check"></i>{" "}
-  <span>{isAuthenticated ? "My Account" : "Login"}</span>
-</Link>
-
+          <Link className="btn my-account-btn fw-bold" to="/auth">
+            <i className="bi bi-person-check"></i>{" "}
+            <span>{isAuthenticated ? "My Account" : "Login"}</span>
+          </Link>
         </nav>
       </div>
     </header>
   );
 };
-console.log("Base URL:", process.env.REACT_APP_API_BASE_URL);
+
 export default Navbar;

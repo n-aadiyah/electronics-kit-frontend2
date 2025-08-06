@@ -1,15 +1,70 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Added
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import axios from "axios";
 
 const ViewCartPage = () => {
-  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
-  const navigate = useNavigate(); // ✅ Added
+  const { cartItems, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const [shippingInfo, setShippingInfo] = useState({
+    name: "",
+    email: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    phone: "",
+  });
+
+  const handleInputChange = (e) => {
+    setShippingInfo({ ...shippingInfo, [e.target.name]: e.target.value });
+  };
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const handlePlaceOrder = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please log in to place an order.");
+      return navigate("/login");
+    }
+
+    const items = cartItems.map((item) => ({
+      productId: item._id,
+      quantity: item.quantity,
+    }));
+
+    const orderData = {
+    items,
+    totalAmount: total,
+    shippingInfo,
+  };
+
+    try {
+      await axios.post(
+        "http://localhost:5000/api/orders",
+        orderData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("Order placed successfully!");
+      clearCart();
+      navigate("/my-orders");
+    } catch (error) {
+      console.error("Order failed:", error.response?.data || error.message);
+      alert(
+        error.response?.data?.message || "Failed to place order. Try again."
+      );
+    }
+  };
 
   return (
     <div className="container py-5">
@@ -21,16 +76,15 @@ const ViewCartPage = () => {
           </h2>
 
           {cartItems.map((item) => (
-            <div key={item.id} className="bg-light p-3 rounded mb-3">
+            <div key={item._id} className="bg-light p-3 rounded mb-3">
               <div className="d-flex align-items-center justify-content-between">
-                {/* Image & Info */}
                 <div className="d-flex align-items-center gap-3">
                   <div
                     className="rounded"
                     style={{
                       width: "56px",
                       height: "56px",
-                      backgroundImage: `url(${item.image})`,
+                      backgroundImage: `url(${item.image || "https://via.placeholder.com/56"})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
@@ -46,7 +100,7 @@ const ViewCartPage = () => {
                   <button
                     className="btn btn-sm rounded-circle border bg-light fw-bold"
                     style={{ width: "32px", height: "32px" }}
-                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    onClick={() => updateQuantity(item._id, item.quantity - 1)}
                     disabled={item.quantity <= 1}
                   >
                     −
@@ -59,7 +113,7 @@ const ViewCartPage = () => {
                   <button
                     className="btn btn-sm rounded-circle border bg-light fw-bold"
                     style={{ width: "32px", height: "32px" }}
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    onClick={() => updateQuantity(item._id, item.quantity + 1)}
                   >
                     +
                   </button>
@@ -70,7 +124,7 @@ const ViewCartPage = () => {
               <div className="d-flex justify-content-end mt-2">
                 <button
                   className="btn fw-bold rounded-pill px-3 py-1"
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item._id)}
                   style={{
                     backgroundColor: "#f0f0f0",
                     color: "#000",
@@ -85,9 +139,9 @@ const ViewCartPage = () => {
           ))}
         </div>
 
-        {/* Right Section - Order Summary */}
+        {/* Right Section - Summary & Shipping Form */}
         <div className="col-md-4">
-          <div className="p-4 sticky-top" style={{ top: "100px" }}>
+          <div className="p-4 border rounded">
             <h5 className="fw-bold mb-3">Order Summary</h5>
             <p className="text-muted mb-2">
               Estimated Delivery: <span className="fw-semibold">3-5 days</span>
@@ -96,8 +150,26 @@ const ViewCartPage = () => {
               Items: <span className="fw-semibold">{cartItems.length}</span>
             </p>
             <h6 className="mt-3">Total: ₹{total}</h6>
+
+            <h6 className="mt-4">Shipping Info</h6>
+            <form>
+              {["name", "email", "address", "city", "postalCode", "phone"].map((field) => (
+                <div className="mb-2" key={field}>
+                  <input
+                    type={field === "email" ? "email" : "text"}
+                    name={field}
+                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    className="form-control"
+                    value={shippingInfo[field]}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              ))}
+            </form>
+
             <button
-              className="btn rounded-pill mt-4 w-100"
+              className="btn rounded-pill mt-3 w-100"
               style={{
                 backgroundColor: "#000",
                 color: "#fff",
@@ -105,9 +177,9 @@ const ViewCartPage = () => {
                 padding: "10px",
                 border: "none",
               }}
-              onClick={() => navigate("/checkout")} // ✅ Added
+              onClick={handlePlaceOrder}
             >
-              Proceed to Checkout
+              Complete Purchase
             </button>
           </div>
         </div>

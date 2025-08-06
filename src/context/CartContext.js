@@ -1,4 +1,6 @@
-import React, { createContext, useState } from "react";
+// src/context/CartContext.js
+
+import React, { createContext, useState, useMemo } from "react";
 
 export const CartContext = createContext();
 
@@ -8,33 +10,52 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product, quantity = 1) => {
     setCartItems((prevItems) => {
-      const exists = prevItems.find((item) => item.id === product.id);
+      const exists = prevItems.find((item) => item.productId === product._id);
+
       if (exists) {
         return prevItems.map((item) =>
-          item.id === product.id
+          item.productId === product._id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prevItems, { ...product, quantity }];
+
+      return [
+        ...prevItems,
+        {
+          ...product,
+          quantity,
+          productId: product._id, // Used internally
+        },
+      ];
     });
 
-    setShowModal(true);
+    setShowModal(true); // Show confirmation modal
   };
 
-  const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const removeFromCart = (productId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.productId !== productId)
+    );
   };
 
   const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) return removeFromCart(productId);
+
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
+        item.productId === productId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
+  const clearCart = () => setCartItems([]);
+
   const toggleModal = () => setShowModal((prev) => !prev);
+
+  const totalAmount = useMemo(() => {
+    return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  }, [cartItems]);
 
   return (
     <CartContext.Provider
@@ -42,7 +63,9 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromCart,
-        updateQuantity, // ✅ added here
+        updateQuantity,
+        clearCart,
+        totalAmount,
         showModal,
         setShowModal,
         toggleModal,

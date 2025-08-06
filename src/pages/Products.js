@@ -1,51 +1,40 @@
-import React, { useState } from "react";
+// src/pages/Products.js
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Navbar from "../components/Navbar";
-import CategoryTabs from "../components/CategoryTabs"; // ✅ import
-import './CategoryTabs.css';
+import CategoryTabs from "../components/CategoryTabs";
+import "./CategoryTabs.css";
 
 const Products = () => {
   const navigate = useNavigate();
-  const products = [
-    {
-      id: 1,
-      title: "Robotics Starter Kit",
-      description: "Great for beginners to learn robotics and automation.",
-      image: "/kit1.jpg",
-      category: "Robotics",
-    },
-    {
-      id: 2,
-      title: "IoT Development Kit",
-      description: "Includes WiFi and sensor modules to build smart devices.",
-      image: "/kit2.jpg",
-      category: "IoT",
-    },
-    {
-      id: 3,
-      title: "Arduino Beginner Kit",
-      description: "Perfect for learning the basics of Arduino programming.",
-      image: "/kit3.jpg",
-      category: "Robotics",
-    },
-    {
-      id: 4,
-      title: "Drone Assembly Kit",
-      description: "Build and fly your own programmable drone.",
-      image: "/kit4.jpg",
-      category: "Others",
-    },
-    {
-      id: 5,
-      title: "Raspberry Pi Starter Kit",
-      description: "Includes all necessary components to start with Pi.",
-      image: "/kit5.jpg",
-      category: "IoT",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get("http://localhost:5000/api/products", {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Add this
+          },
+        });
+
+        setProducts(res.data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const categories = ["All", ...new Set(products.map((p) => p.category))];
-  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredProducts =
     selectedCategory === "All"
@@ -58,42 +47,48 @@ const Products = () => {
       <main className="container py-5">
         <h2 className="text-center mb-4 fw-bold">All Electronics Kits</h2>
 
-        {/* ✅ Category Tabs Component */}
         <CategoryTabs
           categories={categories}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
 
-        {/* Product List */}
-        <div className="row">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <div className="col-md-4 mb-4" key={product.id}>
-                <div className="card shadow-sm h-100">
-                  <img
-                    src={product.image}
-                    className="card-img-top"
-                    alt={product.title}
-                    style={{ height: "200px", objectFit: "cover" }}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.title}</h5>
-                    <p className="card-text">{product.description}</p>
-                    <button
-                      className="btn custom-view-btn w-100 fw-bold"
-                      onClick={() => navigate(`/product/${product.id}`)}
-                    >
-                      View Details
-                    </button>
+        {loading ? (
+          <div className="text-center py-5 text-muted">Loading products...</div>
+        ) : (
+          <div className="row">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <div className="col-md-4 mb-4" key={product._id}>
+                  <div className="card shadow-sm h-100">
+                    <img
+                      src={product.image}
+                      className="card-img-top"
+                      alt={product.title || product.name}
+                      style={{ height: "200px", objectFit: "cover" }}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/300x200.png?text=No+Image")
+                      }
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{product.title || product.name}</h5>
+                      <p className="card-text">{product.description}</p>
+                      <button
+                        className="btn custom-view-btn w-100 fw-bold"
+                        onClick={() => navigate(`/product/${product._id}`)}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <div className="text-center text-muted">No products found.</div>
-          )}
-        </div>
+              ))
+            ) : (
+              <div className="text-center text-muted">No products found.</div>
+            )}
+          </div>
+        )}
       </main>
     </div>
   );

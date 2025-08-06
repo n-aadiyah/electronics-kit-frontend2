@@ -30,12 +30,12 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
       ) : (
         <>
           {cartItems.map((item) => (
-            <div key={item.id} className="card mb-3 border-0 shadow-sm">
+            <div key={item._id || item.id} className="card mb-3 border-0 shadow-sm">
               <div className="row g-0 align-items-center">
                 <div className="col-auto">
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={item.image || "https://via.placeholder.com/70x70?text=No+Image"}
+                    alt={item.title}
                     className="img-fluid rounded-start"
                     style={{
                       width: "70px",
@@ -47,7 +47,7 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
                 </div>
                 <div className="col">
                   <div className="card-body py-2">
-                    <h6 className="card-title fw-semibold mb-1 text-dark">{item.name}</h6>
+                    <h6 className="card-title fw-semibold mb-1 text-dark">{item.title}</h6>
                     <p className="card-text small mb-1 text-secondary">
                       ₹{item.price} ×{" "}
                       <span className="badge bg-light text-dark border">{item.quantity}</span>{" "}
@@ -58,7 +58,7 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
                 <div className="col-auto pe-3">
                   <button
                     className="btn btn-sm btn-outline-secondary"
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item._id || item.id)}
                   >
                     ✖
                   </button>
@@ -77,7 +77,7 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
             <button
               className="btn fw-bold w-100"
               style={{
-                backgroundColor: "#ff4d4d",
+                backgroundColor: "#000",
                 color: "#fff",
                 borderRadius: "0.5rem",
               }}

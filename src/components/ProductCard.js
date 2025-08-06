@@ -6,20 +6,35 @@ const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); // prevent triggering navigation
     addToCart(product);
-    navigate("/cart"); // 🔁 Navigate to cart page
+    navigate("/viewcart"); // Navigate to full cart view
+  };
+
+  const handleCardClick = () => {
+    navigate(`/products/${product._id}`); // Navigate to product details page
   };
 
   return (
-    <div className="card h-100 shadow-sm">
-      <img src={product.image} className="card-img-top" alt={product.name} />
+    <div
+      className="card h-100 shadow-sm"
+      style={{ cursor: "pointer" }}
+      onClick={handleCardClick}
+    >
+     <img src={product.image} alt={product.name} className="img-fluid" />
+
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{product.name}</h5>
-        <p className="card-text text-muted">{product.description}</p>
+        <p className="card-text text-muted" style={{ fontSize: "0.9rem" }}>
+          {product.description?.substring(0, 80)}...
+        </p>
         <div className="mt-auto">
-          <p className="fw-bold">₹{product.price}</p>
-          <button className="btn btn-primary w-100" onClick={handleAddToCart}>
+          <p className="fw-bold mb-2">₹{product.price}</p>
+          <button
+            className="btn btn-dark w-100"
+            onClick={handleAddToCart}
+          >
             Add to Cart
           </button>
         </div>

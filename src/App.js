@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import Home from "./pages/Home";
 import AuthPage from './pages/AuthPage';
+import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from './components/ProtectedRoute';
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
+import MyOrdersPage from './pages/MyOrdersPage';
 import ViewCartPage from "./pages/ViewCartPage";
 import CartPage from "./pages/CartPage";
 import CartModal from "./components/CartModal";
@@ -23,6 +25,7 @@ function App() {
   const handleHideCartModal = () => setShowCartModal(false);
 
   return (
+     <AuthProvider>
     <CartProvider>
       <Router>
         <div className="app-container d-flex flex-column min-vh-100">
@@ -57,6 +60,7 @@ function App() {
     </ProtectedRoute>
   }
 />
+<Route path="/myorders" element={<MyOrdersPage />} />
               <Route path="/about" element={<Aboutus />} />
               <Route path="/contact" element={<ContactUs />} />
 
@@ -66,6 +70,7 @@ function App() {
         </div>
       </Router>
     </CartProvider>
+    </AuthProvider>
   );
 }
 
