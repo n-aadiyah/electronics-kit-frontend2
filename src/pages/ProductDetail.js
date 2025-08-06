@@ -68,17 +68,9 @@ const ProductDetail = () => {
 
         <div className="row">
           <div className="col-md-6 mb-4 mb-md-0">
- <img
-  src={
-    product.image
-      ? process.env.PUBLIC_URL + product.image
-      : "https://via.placeholder.com/400x300?text=No+Image"
-  }
-  alt={title || name}
-  className="img-fluid rounded shadow"
-/>
-          </div>
 
+
+          </div>
           <div className="col-md-6">
             <h2 className="fw-bold">{title || name}</h2>
             <p className="text-muted">Category: {category}</p>
