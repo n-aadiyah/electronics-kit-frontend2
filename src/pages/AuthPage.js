@@ -16,8 +16,6 @@ const AuthPage = () => {
   });
   const [error, setError] = useState(null);
 
-  const BASE_URL = "";
-
   // ✅ Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,8 +33,8 @@ const AuthPage = () => {
     e.preventDefault();
 
     const endpoint = isLogin
-      ? `${BASE_URL}/api/auth/login`
-      : `${BASE_URL}/api/auth/register`;
+      ? `${process.env.REACT_APP_API_URL}/api/auth/login`
+      : `${process.env.REACT_APP_API_URL}/api/auth/register`;
 
     try {
       const response = await axios.post(endpoint, formData);

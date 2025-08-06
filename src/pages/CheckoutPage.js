@@ -80,7 +80,7 @@ const CheckoutPage = () => {
     };
 
     try {
-      const res = await fetch(`${BASE_URL}/api/orders`, {
+      const res = await fetch(/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
