@@ -80,15 +80,16 @@ const CheckoutPage = () => {
     };
 
     try {
-      const res = await fetch(/api/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(orderData),
-        credentials: "include",
-      });
+     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(orderData),
+  credentials: "include",
+});
+
 
       const data = await res.json();
 
