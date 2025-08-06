@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // ✅ Import context
 
 const Navbar = () => {
   const location = useLocation();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+  const { user, logout } = useAuth(); // ✅ Use context
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, [location]); // re-run when route changes
-
-  // ✅ Use the correct environment variable name
-  useEffect(() => {
-    console.log("Base URL:", process.env.REACT_APP_BASE_URL);
-  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // ✅ Clear token
+    logout(); // ✅ Clear user from context
+    navigate("/"); // ✅ Redirect to home
+  };
 
   return (
     <header className="px-3 py-2 border-bottom bg-white shadow-sm fixed-top">
@@ -65,14 +63,23 @@ const Navbar = () => {
           <Link className="nav-link-custom d-flex align-items-center gap-1" to="/products">
             <i className="bi bi-bag-heart"></i> <span>Shop</span>
           </Link>
-<Link to="/myorders" className="btn btn-primary">My Orders</Link>
+          <Link className="nav-link-custom d-flex align-items-center gap-1" to="/myorders">
+            <i className="bi bi-bag"></i> <span>Orders</span>
+          </Link>
           <Link to="/viewcart" className="nav-link-custom d-flex align-items-center gap-1">
             🛒 Basket
           </Link>
-          <Link className="btn my-account-btn fw-bold" to="/auth">
-            <i className="bi bi-person-check"></i>{" "}
-            <span>{isAuthenticated ? "My Account" : "Login"}</span>
-          </Link>
+
+          {/* Auth Button */}
+          {user ? (
+            <button onClick={handleLogout} className="btn my-account-btn fw-bold">
+              <i className="bi bi-box-arrow-right"></i> <span>Logout</span>
+            </button>
+          ) : (
+            <Link className="btn my-account-btn fw-bold" to="/auth">
+              <i className="bi bi-person-check"></i> <span>Login</span>
+            </Link>
+          )}
         </nav>
       </div>
     </header>

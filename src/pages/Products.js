@@ -61,16 +61,16 @@ const Products = () => {
               filteredProducts.map((product) => (
                 <div className="col-md-4 mb-4" key={product._id}>
                   <div className="card shadow-sm h-100">
-                    <img
-                      src={product.image}
-                      className="card-img-top"
-                      alt={product.title || product.name}
-                      style={{ height: "200px", objectFit: "cover" }}
-                      onError={(e) =>
-                        (e.target.src =
-                          "https://via.placeholder.com/300x200.png?text=No+Image")
-                      }
-                    />
+              <img
+  src={product.image} // 👈 Use the full URL directly
+  className="card-img-top"
+  alt={product.title || product.name}
+  style={{ height: "200px", objectFit: "cover" }}
+  onError={(e) => {
+    e.target.onerror = null; // prevent infinite loop
+    e.target.src = "/images/no-image.jpg"; // 👈 fallback from public/images/
+  }}
+/>
                     <div className="card-body">
                       <h5 className="card-title">{product.title || product.name}</h5>
                       <p className="card-text">{product.description}</p>
