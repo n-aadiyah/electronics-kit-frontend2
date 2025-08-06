@@ -68,16 +68,15 @@ const ProductDetail = () => {
 
         <div className="row">
           <div className="col-md-6 mb-4 mb-md-0">
-            <img
+ <img
   src={
-    image
-      ? process.env.PUBLIC_URL + image
+    product.image
+      ? process.env.PUBLIC_URL + product.image
       : "https://via.placeholder.com/400x300?text=No+Image"
   }
   alt={title || name}
   className="img-fluid rounded shadow"
 />
-
           </div>
 
           <div className="col-md-6">
