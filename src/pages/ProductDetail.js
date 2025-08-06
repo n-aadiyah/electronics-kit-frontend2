@@ -68,8 +68,12 @@ const ProductDetail = () => {
 
         <div className="row">
           <div className="col-md-6 mb-4 mb-md-0">
-
-
+<img
+  src={`/${product.image}`} // this resolves to /images/arduino-kit.jpg
+  alt={product.name || product.title}
+  className="img-fluid"
+  onError={(e) => (e.target.src = "/images/no-image.png")}
+/>
           </div>
           <div className="col-md-6">
             <h2 className="fw-bold">{title || name}</h2>
@@ -213,4 +217,3 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
