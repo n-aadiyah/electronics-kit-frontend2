@@ -16,7 +16,7 @@ const AuthPage = () => {
   });
   const [error, setError] = useState(null);
 
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "";
 
   // ✅ Handle input changes
   const handleChange = (e) => {

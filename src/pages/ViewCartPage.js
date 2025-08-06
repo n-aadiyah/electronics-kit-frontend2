@@ -46,7 +46,7 @@ const ViewCartPage = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/orders",
+        `${BASE_URL}/api/orders`,
         orderData,
         {
           headers: {

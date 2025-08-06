@@ -19,7 +19,7 @@ const ProductDetail = () => {
   // ✅ Fetch product details
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`${BASE_URL}/api/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => {
         console.error("Error fetching product:", err);
