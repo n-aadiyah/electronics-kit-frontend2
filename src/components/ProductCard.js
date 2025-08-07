@@ -22,8 +22,16 @@ const ProductCard = ({ product }) => {
       style={{ cursor: "pointer" }}
       onClick={handleCardClick}
     >
-     <img src={product.image} alt={product.name} className="img-fluid" />
-
+<img
+  src={`/images/${product.image || "no-image.png"}`}
+  alt={product.name}
+  className="img-fluid"
+  style={{ height: "200px", objectFit: "cover" }}
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "/images/no-image.png";
+  }}
+/>
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text text-muted" style={{ fontSize: "0.9rem" }}>
@@ -42,5 +50,5 @@ const ProductCard = ({ product }) => {
     </div>
   );
 };
-export default ProductDetail;
+export default ProductCard;
 

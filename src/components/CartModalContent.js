@@ -34,8 +34,8 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
               <div className="row g-0 align-items-center">
                 <div className="col-auto">
                  <img
-  src={`/${product.image}`} // this resolves to /images/arduino-kit.jpg
-  alt={product.name || product.title}
+  src={`/images/${item.image}`} // ✅ correct usage
+  alt={item.name || item.title}
   className="img-fluid"
   onError={(e) => (e.target.src = "/images/no-image.png")}
 />

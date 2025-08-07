@@ -83,12 +83,14 @@ const ViewCartPage = () => {
                   <div
                     className="rounded"
                     style={{
-                      width: "56px",
-                      height: "56px",
-                      backgroundImage: `url(${item.image || "https://via.placeholder.com/56"})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
+  width: "56px",
+  height: "56px",
+  backgroundImage: `url(/images/${item.image || "no-image.png"})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
+
                   ></div>
                   <div>
                     <p className="fw-semibold mb-1">{item.name}</p>
