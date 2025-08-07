@@ -195,16 +195,15 @@ const CheckoutPage = () => {
             <>
               {productsToCheckout.map((item, index) => (
                 <div key={index} className="d-flex align-items-center mb-3">
-                  <div
-                    className="rounded bg-cover bg-center me-3"
-                    style={{
-                      width: "56px",
-                      height: "56px",
-                      backgroundImage: `url(${item.image || "https://via.placeholder.com/56"})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  ></div>
+                 <img
+                    src={`/${item.image}`}
+                    alt={item.title || item.name}
+                    width="56"
+                    height="56"
+                    className="rounded me-3"
+                    style={{ objectFit: "cover" }}
+                    onError={e => (e.target.src = "/images/no-image.png")}
+                  />
                   <div>
                     <p className="mb-0 fw-medium">
                       {item.title || item.name}

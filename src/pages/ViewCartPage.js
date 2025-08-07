@@ -55,7 +55,7 @@ const ViewCartPage = () => {
 
       alert("Order placed successfully!");
       clearCart();
-      navigate("/my-orders");
+      navigate("/MyOrders");
     } catch (error) {
       console.error("Order failed:", error.response?.data || error.message);
       alert(

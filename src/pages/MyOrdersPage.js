@@ -79,7 +79,13 @@ const MyOrdersPage = () => {
             {order.items.map((item) => (
               <div key={item._id} className="col-md-4 mb-3">
                 <div className="d-flex align-items-center">
-                 
+                <img
+                    src={`/${item.productId.image}`}
+                    alt={item.productId.name || item.productId.title}
+                    className="img-fluid rounded"
+                    style={{ width: "64px", height: "64px", objectFit: "cover" }}
+                    onError={(e) => (e.target.src = "/images/no-image.png")}
+                  />
                   <div>
                     <p className="mb-1 fw-bold">{item.productId.name}</p>
                     <p className="mb-0">Qty: {item.quantity}</p>
