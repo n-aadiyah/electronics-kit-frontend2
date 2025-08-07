@@ -23,13 +23,12 @@ const CartPage = () => {
         <div className="row g-3 align-items-center">
           {/* Product Image */}
           <div className="col-md-3 text-center">
-          <img
-src={latestItem.image}
+         <img
+  src={`/images/${latestItem.image}`} // 👈 prepend public path
   alt={latestItem.name || latestItem.title}
   className="img-fluid"
   onError={(e) => (e.target.src = "/images/no-image.png")}
 />
-
           </div>
 
           {/* Product Info */}
