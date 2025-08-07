@@ -79,13 +79,7 @@ const MyOrdersPage = () => {
             {order.items.map((item) => (
               <div key={item._id} className="col-md-4 mb-3">
                 <div className="d-flex align-items-center">
-                  <img
-                    src={item.productId.image}
-                    alt={item.productId.name}
-                    width="64"
-                    height="64"
-                    className="me-3 rounded"
-                  />
+                 
                   <div>
                     <p className="mb-1 fw-bold">{item.productId.name}</p>
                     <p className="mb-0">Qty: {item.quantity}</p>

@@ -24,11 +24,11 @@ const CartPage = () => {
           {/* Product Image */}
           <div className="col-md-3 text-center">
             <img
-              src={latestItem.image}
-              alt={latestItem.title}
-              className="img-fluid rounded"
-              style={{ maxHeight: "150px", objectFit: "cover" }}
-            />
+  src={`/${product.image}`} // this resolves to /images/arduino-kit.jpg
+  alt={product.name || product.title}
+  className="img-fluid"
+  onError={(e) => (e.target.src = "/images/no-image.png")}
+/>
           </div>
 
           {/* Product Info */}

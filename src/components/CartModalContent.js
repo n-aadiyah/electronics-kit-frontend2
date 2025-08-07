@@ -33,17 +33,12 @@ const CartModalContent = ({ lastAddedProductTitle }) => {
             <div key={item._id || item.id} className="card mb-3 border-0 shadow-sm">
               <div className="row g-0 align-items-center">
                 <div className="col-auto">
-                  <img
-                    src={item.image || "https://via.placeholder.com/70x70?text=No+Image"}
-                    alt={item.title}
-                    className="img-fluid rounded-start"
-                    style={{
-                      width: "70px",
-                      height: "70px",
-                      objectFit: "cover",
-                      margin: "10px",
-                    }}
-                  />
+                 <img
+  src={`/${product.image}`} // this resolves to /images/arduino-kit.jpg
+  alt={product.name || product.title}
+  className="img-fluid"
+  onError={(e) => (e.target.src = "/images/no-image.png")}
+/>
                 </div>
                 <div className="col">
                   <div className="card-body py-2">
