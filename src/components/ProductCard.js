@@ -42,5 +42,5 @@ const ProductCard = ({ product }) => {
     </div>
   );
 };
+export default ProductDetail;
 
-export default ProductCard;

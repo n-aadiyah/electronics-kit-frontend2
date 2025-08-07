@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import AuthPage from './pages/AuthPage';
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from './components/ProtectedRoute';
-import ProductDetail from "./pages/ProductDetail";
+import ProductDetail from './pages/ProductDetail';
 import Products from "./pages/Products";
 import MyOrdersPage from './pages/MyOrdersPage';
 import ViewCartPage from "./pages/ViewCartPage";
