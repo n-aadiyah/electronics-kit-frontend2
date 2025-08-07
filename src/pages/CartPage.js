@@ -24,7 +24,7 @@ const CartPage = () => {
           {/* Product Image */}
           <div className="col-md-3 text-center">
           <img
-  src={`${process.env.REACT_APP_API_URL}/images/${latestItem.image}`} // ✅ correct and works after deployment
+src={latestItem.image}
   alt={latestItem.name || latestItem.title}
   className="img-fluid"
   onError={(e) => (e.target.src = "/images/no-image.png")}
