@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import axios from "axios";
+
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const ViewCartPage = () => {
@@ -40,21 +41,17 @@ const ViewCartPage = () => {
     }));
 
     const orderData = {
-    items,
-    totalAmount: total,
-    shippingInfo,
-  };
+      items,
+      totalAmount: total,
+      shippingInfo,
+    };
 
     try {
-      await axios.post(
-        `${BASE_URL}/api/orders`,
-        orderData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.post(`${BASE_URL}/api/orders`, orderData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       alert("Order placed successfully!");
       clearCart();
@@ -80,18 +77,18 @@ const ViewCartPage = () => {
             <div key={item._id} className="bg-light p-3 rounded mb-3">
               <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center gap-3">
-                  <div
+                  <img
+                    src={`/${item.image}`} // ✅ Correct image path for public folder
+                    alt={item.name}
+                    width="56"
+                    height="56"
                     className="rounded"
-                    style={{
-  width: "56px",
-  height: "56px",
-backgroundImage: `url(/${item.image || "images/no-image.png"})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}
-
-                  ></div>
+                    style={{ objectFit: "cover" }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/images/no-image.jpg"; // ✅ fallback image
+                    }}
+                  />
                   <div>
                     <p className="fw-semibold mb-1">{item.name}</p>
                     <p className="text-muted mb-0">₹{item.price}</p>
@@ -109,7 +106,10 @@ backgroundImage: `url(/${item.image || "images/no-image.png"})`,
                     −
                   </button>
 
-                  <span className="fw-semibold text-center" style={{ width: "30px" }}>
+                  <span
+                    className="fw-semibold text-center"
+                    style={{ width: "30px" }}
+                  >
                     {item.quantity}
                   </span>
 
@@ -156,19 +156,23 @@ backgroundImage: `url(/${item.image || "images/no-image.png"})`,
 
             <h6 className="mt-4">Shipping Info</h6>
             <form>
-              {["name", "email", "address", "city", "postalCode", "phone"].map((field) => (
-                <div className="mb-2" key={field}>
-                  <input
-                    type={field === "email" ? "email" : "text"}
-                    name={field}
-                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                    className="form-control"
-                    value={shippingInfo[field]}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-              ))}
+              {["name", "email", "address", "city", "postalCode", "phone"].map(
+                (field) => (
+                  <div className="mb-2" key={field}>
+                    <input
+                      type={field === "email" ? "email" : "text"}
+                      name={field}
+                      placeholder={
+                        field.charAt(0).toUpperCase() + field.slice(1)
+                      }
+                      className="form-control"
+                      value={shippingInfo[field]}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                )
+              )}
             </form>
 
             <button
