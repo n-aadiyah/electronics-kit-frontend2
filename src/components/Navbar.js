@@ -8,9 +8,9 @@ const Navbar = () => {
   const { user, logout } = useAuth(); // ✅ Use context
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // ✅ Clear token
-    logout(); // ✅ Clear user from context
-    navigate("/"); // ✅ Redirect to home
+    localStorage.removeItem("token"); // ✅ If you’re storing a token
+    logout(); // ✅ Clear user context
+    navigate("/"); // ✅ Redirect
   };
 
   return (
@@ -43,7 +43,8 @@ const Navbar = () => {
               className="mb-0"
               style={{
                 fontSize: "0.9rem",
-                background: "linear-gradient(to right, #000000, #8B4513, #006400)",
+                background:
+                  "linear-gradient(to right, #000000, #8B4513, #006400)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -56,25 +57,45 @@ const Navbar = () => {
         {/* Navigation Links */}
         <nav className="d-flex gap-4 align-items-center">
           {location.pathname !== "/" && (
-            <Link className="nav-link-custom d-flex align-items-center gap-1" to="/">
+            <Link
+              className="nav-link-custom d-flex align-items-center gap-1"
+              to="/"
+            >
               <i className="bi bi-house-door"></i> <span>Home</span>
             </Link>
           )}
-          <Link className="nav-link-custom d-flex align-items-center gap-1" to="/products">
+          <Link
+            className="nav-link-custom d-flex align-items-center gap-1"
+            to="/products"
+          >
             <i className="bi bi-bag-heart"></i> <span>Shop</span>
           </Link>
-          <Link className="nav-link-custom d-flex align-items-center gap-1" to="/myorders">
+          <Link
+            className="nav-link-custom d-flex align-items-center gap-1"
+            to="/myorders"
+          >
             <i className="bi bi-bag"></i> <span>Orders</span>
           </Link>
-          <Link to="/viewcart" className="nav-link-custom d-flex align-items-center gap-1">
+          <Link
+            to="/viewcart"
+            className="nav-link-custom d-flex align-items-center gap-1"
+          >
             🛒 Basket
           </Link>
 
-          {/* Auth Button */}
+          {/* Auth Section */}
           {user ? (
-            <button onClick={handleLogout} className="btn my-account-btn fw-bold">
-              <i className="bi bi-box-arrow-right"></i> <span>Logout</span>
-            </button>
+            <>
+              <span className="fw-bold text-success">
+                👋 Welcome, {user.name || "User"}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="btn my-account-btn fw-bold"
+              >
+                <i className="bi bi-box-arrow-right"></i> <span>Logout</span>
+              </button>
+            </>
           ) : (
             <Link className="btn my-account-btn fw-bold" to="/auth">
               <i className="bi bi-person-check"></i> <span>Login</span>
