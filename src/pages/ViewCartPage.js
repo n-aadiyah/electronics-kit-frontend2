@@ -85,7 +85,7 @@ const ViewCartPage = () => {
                     style={{
   width: "56px",
   height: "56px",
-  backgroundImage: `url(/images/${item.image || "no-image.png"})`,
+backgroundImage: `url(/${item.image || "images/no-image.png"})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",

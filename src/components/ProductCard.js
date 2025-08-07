@@ -23,15 +23,12 @@ const ProductCard = ({ product }) => {
       onClick={handleCardClick}
     >
 <img
-  src={`/images/${product.image || "no-image.png"}`}
-  alt={product.name}
+  src={`/${item.image}`} // ✅ no double "images/"
+  alt={item.name || item.title}
   className="img-fluid"
-  style={{ height: "200px", objectFit: "cover" }}
-  onError={(e) => {
-    e.target.onerror = null;
-    e.target.src = "/images/no-image.png";
-  }}
+  onError={(e) => (e.target.src = "/images/no-image.png")}
 />
+
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text text-muted" style={{ fontSize: "0.9rem" }}>
