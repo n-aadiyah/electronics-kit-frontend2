@@ -30,7 +30,6 @@ const CartPage = () => {
   onError={(e) => (e.target.src = "/images/no-image.png")}
 />
           </div>
-
           {/* Product Info */}
           <div className="col-md-6">
             <h5 className="fw-semibold text-dark mb-2">{latestItem.title}</h5>
