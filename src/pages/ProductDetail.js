@@ -10,13 +10,14 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext);
-
+  const { addToCart, cartItems } = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [lastAddedProductTitle, setLastAddedProductTitle] = useState("");
 
+  // ✅ Check if product is in cart
+  const isInCart = cartItems.some(item => item.productId === id);
   // ✅ Fetch product details
   useEffect(() => {
     axios
@@ -32,7 +33,7 @@ const ProductDetail = () => {
   const decreaseQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleAddToCart = () => {
-    if (!product) return;
+    if (!product || isInCart) return;
     addToCart(product, quantity);
     setLastAddedProductTitle(product.title || product.name);
     setShowModal(true);
@@ -134,8 +135,9 @@ const ProductDetail = () => {
                     className="btn btn-dark w-100 fw-bold py-2"
                     style={{ borderRadius: "0.70rem" }}
                     onClick={handleAddToCart}
+                   disabled={isInCart}
                   >
-                    Add to Cart
+                    {isInCart ? "✔️ Added to Cart" : "Add to Cart"}
                   </button>
 
                   <button

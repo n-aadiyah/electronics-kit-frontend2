@@ -1,14 +1,19 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+
 const ProductCard = ({ product }) => {
-  const { addToCart } = useContext(CartContext);
+  const { cartItems, addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const handleAddToCart = (e) => {
+   // Check if product is already in cart
+  const isInCart = cartItems.some(item => item._id === product._id);
+
+   const handleAddToCart = (e) => {
     e.stopPropagation(); // prevent triggering navigation
-    addToCart(product);
-    navigate("/viewcart"); // Navigate to full cart view
+    if (!isInCart) {
+      addToCart(product);
+    }
   };
   const handleCardClick = () => {
     navigate(`/products/${product._id}`); // Navigate to product details page
@@ -36,8 +41,9 @@ const ProductCard = ({ product }) => {
           <button
             className="btn btn-dark w-100"
             onClick={handleAddToCart}
+            disabled={isInCart}
           >
-            Add to Cart
+             {isInCart ? "✔️ Added to Cart" : "Add to Cart"}
           </button>
         </div>
       </div>

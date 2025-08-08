@@ -13,6 +13,7 @@ export const CartProvider = ({ children }) => {
       const exists = prevItems.find((item) => item.productId === product._id);
 
       if (exists) {
+        toast.info("🔁 Product already in cart!");
         return prevItems.map((item) =>
           item.productId === product._id
             ? { ...item, quantity: item.quantity + quantity }
@@ -45,16 +46,21 @@ export const CartProvider = ({ children }) => {
 
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.productId === productId ? { ...item, quantity: newQuantity } : item
+        item.productId === productId
+          ? { ...item, quantity: newQuantity }
+          : item
       )
     );
   };
-
 const clearCart = () => {
     setCartItems([]);
     toast("🧹 Cart cleared!");
   };
   const toggleModal = () => setShowModal((prev) => !prev);
+
+ const isInCart = (productId) => {
+    return cartItems.some((item) => item.productId === productId);
+  };
 
   const totalAmount = useMemo(() => {
     return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -72,6 +78,7 @@ const clearCart = () => {
         showModal,
         setShowModal,
         toggleModal,
+        isInCart, 
       }}
     >
       {children}
