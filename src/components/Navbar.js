@@ -77,7 +77,7 @@ toast.info("👋 You have been logged out.");
             className="nav-link-custom d-flex align-items-center gap-1"
             to="/myorders"
           >
-            <i className="bi bi-bag"></i> <span>Orders</span>
+            <i class="bi bi-box-fill"></i> <span>Orders</span>
           </Link>
           <Link
             to="/viewcart"
@@ -96,7 +96,7 @@ toast.info("👋 You have been logged out.");
                 onClick={handleLogout}
                 className="btn my-account-btn fw-bold"
               >
-                <i className="bi bi-box-arrow-right"></i> <span>Logout</span>
+                <i class="bi bi-toggle2-off"></i> <span>Logout</span>
               </button>
             </>
           ) : (

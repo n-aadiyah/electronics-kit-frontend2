@@ -60,11 +60,12 @@ const ProductDetail = () => {
   } = product;
 
   return (
-    <div style={{ paddingTop: "100px" }}>
+    <div style={{ paddingTop: "60px" }}>
       <Navbar />
       <div className="container py-4">
         <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
-          ← Back
+           <i className="bi bi-layer-backward"></i>
+          Back
         </button>
 
         <div className="row">
