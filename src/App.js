@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import AuthPage from './pages/AuthPage';
 import { AuthProvider } from "./context/AuthContext";
@@ -68,6 +70,7 @@ function App() {
           </div>
           <Footer />
         </div>
+        <ToastContainer position="top-center" autoClose={2000} />
       </Router>
     </CartProvider>
     </AuthProvider>

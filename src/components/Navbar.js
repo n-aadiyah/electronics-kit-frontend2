@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // ✅ Import context
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const location = useLocation();
@@ -11,6 +12,8 @@ const Navbar = () => {
     localStorage.removeItem("token"); // ✅ If you’re storing a token
     logout(); // ✅ Clear user context
     navigate("/"); // ✅ Redirect
+toast.info("👋 You have been logged out.");
+
   };
 
   return (

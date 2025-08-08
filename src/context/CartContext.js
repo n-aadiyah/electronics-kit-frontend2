@@ -1,7 +1,7 @@
 // src/context/CartContext.js
 
 import React, { createContext, useState, useMemo } from "react";
-
+import { toast } from "react-toastify";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
             : item
         );
       }
-
       return [
         ...prevItems,
         {
@@ -29,14 +28,16 @@ export const CartProvider = ({ children }) => {
         },
       ];
     });
-
     setShowModal(true); // Show confirmation modal
+
+    toast.success("🛒 Product added to cart!");
   };
 
   const removeFromCart = (productId) => {
     setCartItems((prevItems) =>
       prevItems.filter((item) => item.productId !== productId)
     );
+     toast.error("🗑️ Product removed from cart");
   };
 
   const updateQuantity = (productId, newQuantity) => {
@@ -49,8 +50,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCart = () => setCartItems([]);
-
+const clearCart = () => {
+    setCartItems([]);
+    toast("🧹 Cart cleared!");
+  };
   const toggleModal = () => setShowModal((prev) => !prev);
 
   const totalAmount = useMemo(() => {

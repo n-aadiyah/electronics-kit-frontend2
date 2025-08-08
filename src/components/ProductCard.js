@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
-
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
@@ -11,11 +10,9 @@ const ProductCard = ({ product }) => {
     addToCart(product);
     navigate("/viewcart"); // Navigate to full cart view
   };
-
   const handleCardClick = () => {
     navigate(`/products/${product._id}`); // Navigate to product details page
   };
-
   return (
     <div
       className="card h-100 shadow-sm"

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // useAuth hook
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const AuthPage = () => {
@@ -42,7 +43,6 @@ const AuthPage = () => {
     try {
       const response = await axios.post(endpoint, formData);
       console.log("✅ Auth Success:", response.data);
-
       if (isLogin) {
         // Normalize user data
         const user = {
