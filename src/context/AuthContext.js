@@ -4,36 +4,38 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    // Load user from localStorage on refresh
-    const savedUser = localStorage.getItem('user');
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
-  const login = (userData) => {
+  // Load user and token from localStorage on initial load
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    const savedToken = localStorage.getItem('token');
+    if (savedUser && savedToken) {
+      setUser(JSON.parse(savedUser));
+      setToken(savedToken);
+    }
+  }, []);
+
+  const login = (userData, userToken) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // persist login
+    setToken(userToken);
+    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('token', userToken);
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user'); // clear on logout
+    setToken(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
   };
 
-  // This useEffect is optional: if you ever want to sync login state live
-  useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser && !user) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, [user]);
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Optional: Custom hook
 export const useAuth = () => useContext(AuthContext);

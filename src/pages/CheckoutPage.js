@@ -2,12 +2,14 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartContext } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { cartItems, clearCart } = useContext(CartContext);
+  const { user } = useAuth(); 
   const buyNowProduct = location.state?.buyNowProduct;
 
   const [quantity, setQuantity] = useState(buyNowProduct?.quantity || 1);
@@ -22,6 +24,10 @@ const CheckoutPage = () => {
   });
 
   useEffect(() => {
+     if (!user) {
+      navigate("/auth?msg=login-required");
+    }
+
     if (buyNowProduct) {
       setSubtotal(buyNowProduct.price * quantity);
     } else {
@@ -31,7 +37,7 @@ const CheckoutPage = () => {
       );
       setSubtotal(total);
     }
-  }, [quantity, buyNowProduct, cartItems]);
+  }, [quantity, buyNowProduct, cartItems, user, navigate]);
 
   const handleChange = (e) => {
     setShippingDetails({
@@ -44,8 +50,11 @@ const CheckoutPage = () => {
     e.preventDefault();
 
     const token = localStorage.getItem("token");
-    const email = localStorage.getItem("userEmail") || "guest@example.com";
-
+ if (!token || !user) {
+      alert("You must be logged in to place an order.");
+      navigate("/auth?msg=login-required");
+      return;
+    }
     const items = buyNowProduct
       ? [
           {
@@ -67,19 +76,19 @@ const CheckoutPage = () => {
       return;
     }
 
-    const orderData = {
+   const orderData = {
+      userId: user._id, // ✅ include this if your backend expects it
       items: validItems,
       totalAmount: subtotal,
       shippingInfo: {
         name: shippingDetails.name,
-        email,
+        email: user.email,
         address: shippingDetails.address,
         city: shippingDetails.city,
         postalCode: shippingDetails.postalCode,
         phone: shippingDetails.phone,
       },
     };
-
     try {
      const res = await fetch(`${BASE_URL}/api/orders`, {
   method: "POST",

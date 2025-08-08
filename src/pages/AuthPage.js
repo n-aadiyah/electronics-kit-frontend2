@@ -21,10 +21,12 @@ const AuthPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+     setError(null);
   };
 
   // ✅ Toggle between login/signup
   const toggleForm = () => {
+      setFormData({ username: "", email: "", password: "" });
     setError(null);
     setIsLogin((prev) => !prev);
   };
@@ -42,16 +44,27 @@ const AuthPage = () => {
       console.log("✅ Auth Success:", response.data);
 
       if (isLogin) {
-        login(response.data.user); // Update context
-        localStorage.setItem("token", response.data.token); // Store token
-        navigate("/"); // Redirect to home
+        // Normalize user data
+        const user = {
+          name: response.data.user?.name || response.data.user?.username || "User",
+          email: response.data.user?.email,
+          token: response.data.token,
+        };
+
+        login(user);
+        localStorage.setItem("token", user.token);
+        navigate("/");
       } else {
         alert("✅ Registered successfully! Please log in.");
-        setIsLogin(true); // Switch to login form
+        setIsLogin(true);
       }
     } catch (error) {
       console.error("❌ Auth Error:", error);
-      setError(error.response?.data?.error || "Authentication failed. Please try again.");
+      const message =
+        error.response?.data?.error ||
+        error.response?.data?.message ||
+        "Authentication failed. Please try again.";
+      setError(message);
     }
   };
 

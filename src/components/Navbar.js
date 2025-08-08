@@ -87,7 +87,7 @@ const Navbar = () => {
           {user ? (
             <>
               <span className="fw-bold text-success">
-                👋 Welcome, {user.name || "User"}
+                hi👋 , {user.name || "User"}
               </span>
               <button
                 onClick={handleLogout}
