@@ -47,9 +47,7 @@ function App() {
           <Route
             path="/viewcart"
             element={
-              <ProtectedRoute>
                 <ViewCartPage />
-              </ProtectedRoute>
             }
           />
           <Route
@@ -63,9 +61,7 @@ function App() {
           <Route
             path="/myorders"
             element={
-              <ProtectedRoute>
                 <MyOrdersPage />
-              </ProtectedRoute>
             }
           />
           <Route path="/about" element={<Aboutus />} />
