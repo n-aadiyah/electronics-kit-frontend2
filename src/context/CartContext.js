@@ -2,18 +2,28 @@
 
 import React, { createContext, useState, useMemo } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  const addToCart = (product, quantity = 1) => {
-    setCartItems((prevItems) => {
+   const navigate = useNavigate();
+
+const addToCart = (product, quantity = 1) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      toast.warn("🔐 Please login to add products to cart");
+      navigate("/auth");
+      return;
+    }   
+     setCartItems((prevItems) => {
       const exists = prevItems.find((item) => item.productId === product._id);
 
       if (exists) {
-        toast.info("🔁 Product already in cart!");
         return prevItems.map((item) =>
           item.productId === product._id
             ? { ...item, quantity: item.quantity + quantity }
