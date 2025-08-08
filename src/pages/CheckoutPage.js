@@ -3,15 +3,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartContext } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { cartItems, clearCart } = useContext(CartContext);
-  const { user } = useAuth(); 
-  const buyNowProduct = location.state?.buyNowProduct;
+  const { user } = useAuth(); // ✅ Use context instead of localStorage
 
+  const buyNowProduct = location.state?.buyNowProduct;
   const [quantity, setQuantity] = useState(buyNowProduct?.quantity || 1);
   const [subtotal, setSubtotal] = useState(0);
 
@@ -24,7 +25,7 @@ const CheckoutPage = () => {
   });
 
   useEffect(() => {
-     if (!user) {
+    if (!user) {
       navigate("/auth?msg=login-required");
     }
 
@@ -49,12 +50,13 @@ const CheckoutPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
- if (!token || !user) {
+    const token = localStorage.getItem("token"); // still fine for request header
+    if (!token || !user) {
       alert("You must be logged in to place an order.");
       navigate("/auth?msg=login-required");
       return;
     }
+
     const items = buyNowProduct
       ? [
           {
@@ -76,7 +78,7 @@ const CheckoutPage = () => {
       return;
     }
 
-   const orderData = {
+    const orderData = {
       userId: user._id, // ✅ include this if your backend expects it
       items: validItems,
       totalAmount: subtotal,
@@ -89,24 +91,23 @@ const CheckoutPage = () => {
         phone: shippingDetails.phone,
       },
     };
-    try {
-     const res = await fetch(`${BASE_URL}/api/orders`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  },
-  body: JSON.stringify(orderData),
-  credentials: "include",
-});
 
+    try {
+      const res = await fetch(`${BASE_URL}/api/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(orderData),
+      });
 
       const data = await res.json();
 
       if (res.ok) {
         alert("✅ Order placed successfully!");
         if (!buyNowProduct) clearCart();
-        navigate("/MyOrders");
+        navigate("/myorders");
       } else {
         alert("❌ Failed to place order: " + data.message);
       }
@@ -116,8 +117,7 @@ const CheckoutPage = () => {
   };
 
   const increaseQty = () => setQuantity((prev) => prev + 1);
-  const decreaseQty = () =>
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const decreaseQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const productsToCheckout = buyNowProduct
     ? [{ ...buyNowProduct, quantity }]
@@ -204,14 +204,14 @@ const CheckoutPage = () => {
             <>
               {productsToCheckout.map((item, index) => (
                 <div key={index} className="d-flex align-items-center mb-3">
-                 <img
+                  <img
                     src={`/${item.image}`}
                     alt={item.title || item.name}
                     width="56"
                     height="56"
                     className="rounded me-3"
                     style={{ objectFit: "cover" }}
-                    onError={e => (e.target.src = "/images/no-image.png")}
+                    onError={(e) => (e.target.src = "/images/no-image.png")}
                   />
                   <div>
                     <p className="mb-0 fw-medium">
@@ -266,4 +266,3 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-
