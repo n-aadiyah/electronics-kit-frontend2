@@ -1,18 +1,14 @@
 // src/pages/Home.js
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Navbar from "../components/Navbar"; // keeping your existing custom Navbar
-
 const Home = () => {
   return (
     <>
       {/* Top Section */}
       <div className="container-fluid" style={{ backgroundColor: "#48AAAD" }}>
         {/* Navbar with Logo */}
-        <Navbar />
-
         <Container>
-          <Row className="align-items-center" style={{ minHeight: "40vh" }}>
+          <Row className="align-items-center" style={{ minHeight: "50vh" }}>
             {/* Text Content */}
             <Col md={7} className="text-black text-center text-md-start p-0">
               <h1 className="fw-bold display-2 display-md-4 p-0 mt-0">

@@ -1,0 +1,18 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #48AAAD; /* Teal-green background */
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+.navbar-logo {
+  height: auto !important;
+  width: 200px !important;
+  max-height: 300px !important;
+  object-fit: contain;
+}

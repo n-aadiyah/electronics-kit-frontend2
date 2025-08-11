@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Home from "./pages/Home";
 import AuthPage from './pages/AuthPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -18,7 +17,6 @@ import Aboutus from "./pages/Aboutus";
 import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
 import './index.css';
 
 function App() {

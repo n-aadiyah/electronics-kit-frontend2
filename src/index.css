@@ -79,14 +79,4 @@ background: linear-gradient(to right, #333333, #e9d362); /* W3C, IE 10+/ Edge, F
   border: none !important;
   transition: 0.3s ease;                                                      
 }
-/* Force navbar logo to be bigger */
-.navbar-logo {
-  height: "auto" !important; /* Adjust this until it looks perfect */
-  width: 180px !important;
-  max-height: 100px !important; /* Ensure it doesn't exceed a certain height */
-  object-fit: contain;}
-/* Adjust navbar height */
-.navbar {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
+
