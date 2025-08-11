@@ -12,7 +12,7 @@ const Home = () => {
         <Navbar />
 
         <Container>
-          <Row className="align-items-center" style={{ minHeight: "50vh" }}>
+          <Row className="align-items-center" style={{ minHeight: "40vh" }}>
             {/* Text Content */}
             <Col md={7} className="text-black text-center text-md-start p-0">
               <h1 className="fw-bold display-2 display-md-4 p-0 mt-0">

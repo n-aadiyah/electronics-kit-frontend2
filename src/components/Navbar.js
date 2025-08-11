@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="px-3 py-2  fixed-top"
+      className="navbar px-3 py-2  fixed-top"
       style={{
         backgroundColor: "#48AAAD", // teal-green background
       }}
@@ -30,7 +30,6 @@ const Navbar = () => {
   alt="Logo"
   className="navbar-logo"
 />
-
         </Link>
 
         {/* Navigation Links */}

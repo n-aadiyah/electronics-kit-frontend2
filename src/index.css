@@ -85,3 +85,8 @@ background: linear-gradient(to right, #333333, #e9d362); /* W3C, IE 10+/ Edge, F
   width: 180px !important;
   max-height: 100px !important; /* Ensure it doesn't exceed a certain height */
   object-fit: contain;}
+/* Adjust navbar height */
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
