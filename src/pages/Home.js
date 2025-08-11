@@ -1,67 +1,108 @@
 // src/pages/Home.js
 import React from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import Navbar from "../components/Navbar"; // keeping your existing custom Navbar
+
 const Home = () => {
   return (
-    <div style={{ paddingTop: "30px", width: "100%", overflowX: "hidden" }}>
-      <Navbar />
-      <div className="home-root" style={{ fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif' }}>
-       {/* Hero Section */}
-<main className="container py-5">
-  <section className="mb-5">
-    <div
-      className="rounded d-flex align-items-center justify-content-center text-center p-1"
-      style={{
-        minHeight: "350px",
-        backgroundImage:
-          'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("/hero.jpg")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        borderRadius: "1rem",
-        color: "#fff",
-      }}
-    >
-      <div className="col-lg-10">
-        <h1 className="display-5 fw-bold mb-3">Elevate Your Tech</h1>
-        <p className="lead">
-          Discover the latest trends and timeless classics in electronics.
-        </p>
-        <Link to="/products" className="btn shopnow-btn fw-bold px-4 py-2 mt-3">
-          Shop Now
-        </Link>
+    <>
+      {/* Top Section */}
+      <div className="container-fluid" style={{ backgroundColor: "#48AAAD" }}>
+        {/* Navbar with Logo */}
+        <Navbar />
+
+        <Container>
+          <Row className="align-items-center" style={{ minHeight: "50vh" }}>
+            {/* Text Content */}
+            <Col md={7} className="text-black text-center text-md-start p-0">
+              <h1 className="fw-bold display-2 display-md-4 p-0 mt-0">
+                From Curiosity to Creation
+              </h1>
+              <Button
+                variant="warning"
+                size="md"
+                className="mt-2 fw-bold text-dark"
+                href="/products"
+              >
+                Start Building
+              </Button>
+            </Col>
+
+            {/* Image */}
+            <Col md={4} className="text-center mt-5 mt-md-n6">
+              <img
+                src="/images/stemtans.png"
+                alt="STEM Kit"
+                className="img-fluid"
+                style={{
+                  transform: "rotate(+10deg)",
+                  transition: "transform 0.3s ease-in-out",
+                  backgroundColor: "transparent",
+                }}
+              />
+            </Col>
+          </Row>
+        </Container>
       </div>
-    </div>
-  </section>
-          {/* Why Choose Us */}
-          <section className="mb-5">
-            <h2 className="fw-bold mb-4 text-center">Why Choose Us?</h2>
-            <div className="row g-4 text-center">
-              <div className="col-md-4">
-                <div className="p-4 border rounded shadow-sm h-100">
-                  <h5 className="fw-bold mb-2">🚚 Fast Delivery</h5>
-                  <p className="text-muted mb-0">Quick and reliable shipping to your door.</p>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="p-4 border rounded shadow-sm h-100">
-                  <h5 className="fw-bold mb-2">💡 Quality Kits</h5>
-                  <p className="text-muted mb-0">Premium components and tested designs.</p>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="p-4 border rounded shadow-sm h-100">
-                  <h5 className="fw-bold mb-2">📞 24/7 Support</h5>
-                  <p className="text-muted mb-0">Expert guidance when you need it most.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </main>
+
+      {/* Bottom Section */}
+      <div className="bg-white py-5">
+        <Container>
+          {/* Row 1 - Images */}
+          <Row className="text-center justify-content-center mb-5">
+            <Col xs={12} md={4} className="mb-4">
+              <img
+                src="/images/boxreact1.png"
+                alt="Monthly STEM Kit"
+                className="img-fluid mb-3"
+                style={{ maxWidth: "150px" }}
+              />
+              <h3 className="fw-bold">Monthly STEM Kits</h3>
+            </Col>
+
+            <Col xs={12} md={4} className="mb-4">
+              <img
+                src="/images/soldering1.png"
+                alt="DIY Electronics Tools"
+                className="img-fluid mb-3"
+                style={{ maxWidth: "150px" }}
+              />
+              <h3 className="fw-bold">DIY Electronics Tools</h3>
+            </Col>
+
+            <Col xs={12} md={4} className="mb-4">
+              <img
+                src="/images/chem1.png"
+                alt="School Lab Bundles"
+                className="img-fluid mb-3"
+                style={{ maxWidth: "150px" }}
+              />
+              <h3 className="fw-bold">School Lab Bundles</h3>
+            </Col>
+          </Row>
+
+          {/* Row 2 - Sub Titles / Descriptions */}
+          <Row className="text-center justify-content-center">
+            <Col xs={12} md={4} className="mb-3">
+              <h4 className="text-muted">
+                <b>Monthly STEM kits</b>
+              </h4>
+            </Col>
+            <Col xs={12} md={4} className="mb-3">
+              <h4 className="text-muted">
+                <b>DIY Electronics Tools</b>
+              </h4>
+            </Col>
+            <Col xs={12} md={4} className="mb-3">
+              <h4 className="text-muted">
+                <b>School Lab Bundles</b>
+              </h4>
+            </Col>
+          </Row>
+        </Container>
       </div>
-    </div>
+    </>
   );
 };
+
 export default Home;
-
-

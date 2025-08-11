@@ -27,20 +27,20 @@ body, html {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #198754; /* Bootstrap green */
+  background-color: #09110d; /* Bootstrap green */
   transition: width 0.3s ease;
 }
 
 /* Hover effect */
 .nav-link-custom:hover {
-  color: #198754;
+  color: #040505;
 }
 
 .nav-link-custom:hover::after {
   width: 100%;
 }
 .custom-view-btn {
-background: #73C8A9;  /* fallback for old browsers */
+background: #0c0e0d;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #373B44, #73C8A9);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #373B44, #73C8A9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B89C93", endColorstr="#8E6865", GradientType=1 );  color: rgb(203, 202, 201) !important;
@@ -79,3 +79,8 @@ background: linear-gradient(to right, #333333, #e9d362); /* W3C, IE 10+/ Edge, F
   border: none !important;
   transition: 0.3s ease;                                                      
 }
+/* Force navbar logo to be bigger */
+.navbar-logo {
+  height: "auto" !important; /* Adjust this until it looks perfect */
+  width: 200px !important;
+  object-fit: contain;}
