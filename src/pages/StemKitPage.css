@@ -7,7 +7,7 @@
 
 .stemkit-image-container {
   width: 100%;
-  height: calc(150vh - 150px - 40px); /* Navbar height + footer height */
+  height: calc(140vh - 150px - 40px); /* Navbar height + footer height */
   overflow: hidden;
 }
 .stemkit-image {
