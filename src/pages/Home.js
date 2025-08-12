@@ -1,7 +1,11 @@
 // src/pages/Home.js
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
+
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* Top Section */}
@@ -14,11 +18,11 @@ const Home = () => {
               <h1 className="fw-bold display-2 display-md-4 p-0 mt-0">
                 From Curiosity to Creation
               </h1>
-<Button
-  size="md"
-  className="mt-2 fw-bold custom-btn"
-  href="/products"
->
+              <Button
+                size="md"
+                className="mt-2 fw-bold custom-btn"
+                href="/products"
+              >
                 Start Building
               </Button>
             </Col>
@@ -45,7 +49,13 @@ const Home = () => {
         <Container>
           {/* Row 1 - Images */}
           <Row className="text-center justify-content-center mb-5">
-            <Col xs={12} md={4} className="mb-4">
+            <Col
+              xs={12}
+              md={4}
+              className="mb-4"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/stem-kit")}
+            >
               <img
                 src="/images/boxreact1.png"
                 alt="Monthly STEM Kit"

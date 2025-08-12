@@ -1,0 +1,39 @@
+.stemkit-page {
+  margin: 0;
+  padding: 0;
+}
+
+/* Fullscreen image container */
+.stemkit-image-container {
+  width: 100%;
+  height: 100vh; /* full viewport height */
+  overflow: hidden;
+}
+
+/* Fullscreen image without cropping top/bottom */
+.stemkit-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* no cropping */
+  display: block;
+}
+
+/* Example navbar styling */
+.custom-navbar {
+  background-color: hsl(182, 41%, 48%);
+  padding: 1rem;
+}
+
+.custom-navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.custom-navbar li {
+  cursor: pointer;
+}

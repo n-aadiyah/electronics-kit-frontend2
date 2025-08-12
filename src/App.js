@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
+import StemKitPage from "./pages/StemKitPage"; 
 import AuthPage from './pages/AuthPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProductDetail from './pages/ProductDetail';
@@ -35,6 +36,7 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
+           <Route path="/stem-kit" element={<StemKitPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/products" element={<Products />} />
           <Route
