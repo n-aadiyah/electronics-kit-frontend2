@@ -1,12 +1,12 @@
 /* Navbar.css */
 
 .navbar {
-  height: 130px;               /* fixed height */
+  height: 150px;
   background-color: hsl(182, 41%, 48%);
-  padding: 0 1.5rem;           /* horizontal padding */
-  display: flex;               /* use flexbox */
-  align-items:flex-start;         /* vertical center */
-  justify-content: space-between; /* space between logo and nav */
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
@@ -14,42 +14,72 @@
   box-sizing: border-box;
 }
 .logo-link {
-  height: 100%;               /* full height of navbar */
-  display: flex;
-  align-items: center;        /* vertical center */
-  justify-content: flex-start; /* align left */
-  padding: 0;
-  margin: 0;
-}
-
-.navbar-logo {
-  height: 180px;               /* slightly smaller than navbar height */
-  width: auto;                /* maintain aspect ratio */
-  object-fit: contain;
-}
-nav {
-  display: flex;
-  align-items: center;        /* vertical center */
-  gap: 1.1rem;
   height: 100%;
-  flex-wrap: wrap;
-  overflow-x: auto;
-}
-
-nav a, nav span {
-  color: white;
-  font-weight: 600;
-  font-size: 1.2rem;
   display: flex;
-  align-items:start;       /* vertically center icons and text */
-  gap: 0.3rem;
-  text-decoration: none;
-  cursor: pointer;
+  align-items: flex-start;
+  justify-content: flex-start;
+   padding: 0;
+  margin: 0;
+   position: relative;
+}
+.navbar-logo {
+  height: 280px;
+  width: auto;
+ position: absolute; 
+   object-fit: contain;
+  margin-top:-50px; /* remove any top space */
+  padding-top: 0;
 }
 .navbar > .container-fluid {
   padding-top: 0;
   padding-bottom: 0;
   margin: 0;
-  height: 100%; /* fill navbar height */
+  height: 100%;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  height: 100%;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+
+/* Custom nav link class to avoid Bootstrap conflicts */
+.nav-link-custom {
+  position: relative;
+  color: white;
+  font-weight: 600;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+/* Underline effect */
+.nav-link-custom::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: orange;
+  transition: width 0.3s ease;
+}
+
+/* Hover state */
+.nav-link-custom:hover {
+  color: orange;
+}
+
+.nav-link-custom:hover::after {
+  width: 100%;
 }
 
