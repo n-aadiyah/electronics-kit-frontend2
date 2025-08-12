@@ -51,7 +51,7 @@ nav {
   position: relative;
   color: white;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -70,16 +70,30 @@ nav {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: orange;
-  transition: width 0.3s ease;
+  background-color: #ff6600;
+    transition: width 0.3s ease;
 }
 
 /* Hover state */
 .nav-link-custom:hover {
-  color: orange;
+  color: #ff6600;
 }
 
 .nav-link-custom:hover::after {
   width: 100%;
 }
+.username-highlight {
+color: #8f5a36; 
+  font-weight: bold;
+}
 
+.custom-btn {
+  background-color: #ff6600 !important; /* orange */
+  border-color: #ff6600 !important;
+  color: white !important;
+}
+
+.custom-btn:hover {
+  background-color: #e65c00 !important; /* darker orange */
+  border-color: #e65c00 !important;
+}

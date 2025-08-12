@@ -41,16 +41,22 @@ const Navbar = () => {
             🛒 Basket
           </Link>
 
-          {/* Auth Section */}
-          {user ? (
-            <span className="nav-link-custom" onClick={handleLogout}>
-              <i className="bi bi-toggle2-off"></i> Logout
-            </span>
-          ) : (
-            <Link className="nav-link-custom" to="/auth">
-              <i className="bi bi-person-check"></i> Login
-            </Link>
-          )}
+        {/* Auth Section */}
+{user ? (
+  <>
+     <span className="nav-link-custom">
+      👋 <span className="username-highlight"> Hi,{user.name || user.username}</span>
+    </span>
+    <span className="nav-link-custom" onClick={handleLogout}>
+      <i className="bi bi-toggle2-off"></i> Logout
+    </span>
+  </>
+) : (
+  <Link className="nav-link-custom" to="/auth">
+    <i className="bi bi-person-check"></i> Login
+  </Link>
+)}
+
         </nav>
       </div>
     </header>

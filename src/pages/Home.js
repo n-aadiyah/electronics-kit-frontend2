@@ -14,12 +14,11 @@ const Home = () => {
               <h1 className="fw-bold display-2 display-md-4 p-0 mt-0">
                 From Curiosity to Creation
               </h1>
-              <Button
-                variant="warning"
-                size="md"
-                className="mt-2 fw-bold text-dark"
-                href="/products"
-              >
+<Button
+  size="md"
+  className="mt-2 fw-bold custom-btn"
+  href="/products"
+>
                 Start Building
               </Button>
             </Col>
