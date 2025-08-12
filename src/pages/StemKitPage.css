@@ -7,7 +7,7 @@
 
 .stemkit-image-container {
   width: 100%;
-  height: calc(130vh - 150px);
+  height: calc(150vh - 150px);
   overflow: hidden;
 }
 
