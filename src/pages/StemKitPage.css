@@ -7,18 +7,14 @@
 
 .stemkit-image-container {
   width: 100%;
-  height: calc(150vh - 150px);
+  height: calc(140vh - 150px - 40px); /* Navbar height + footer height */
   overflow: hidden;
 }
-
 .stemkit-image {
   width: 100%;
   height: 100%;
   object-fit: cover; /* keeps full coverage without white gaps */
-   display: block;
 }
-
-
 /* Example navbar styling */
 .custom-navbar {
   background-color: hsl(182, 41%, 48%);
