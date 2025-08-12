@@ -65,7 +65,9 @@ const Home = () => {
               <h3 className="fw-bold">Monthly STEM Kits</h3>
             </Col>
 
-            <Col xs={12} md={4} className="mb-4">
+            <Col xs={12} md={4} className="mb-4"
+             style={{ cursor: "pointer" }}
+              onClick={() => navigate("/products")}>
               <img
                 src="/images/soldering1.png"
                 alt="DIY Electronics Tools"
@@ -75,7 +77,9 @@ const Home = () => {
               <h3 className="fw-bold">DIY Electronics Tools</h3>
             </Col>
 
-            <Col xs={12} md={4} className="mb-4">
+            <Col xs={12} md={4} className="mb-4"
+            style={{ cursor: "pointer" }}
+              onClick={() => navigate("/products")}>
               <img
                 src="/images/chem1.png"
                 alt="School Lab Bundles"
