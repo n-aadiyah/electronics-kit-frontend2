@@ -1,22 +1,23 @@
 .stemkit-page {
-  margin: 0;
-  padding: 0;
+  background-color: hsl(182, 41%, 48%);
+  min-height:150;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Fullscreen image container */
 .stemkit-image-container {
   width: 100%;
-  height: 100vh; /* full viewport height */
+  height: calc(130vh - 150px);
   overflow: hidden;
 }
 
-/* Fullscreen image without cropping top/bottom */
 .stemkit-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* no cropping */
-  display: block;
+  object-fit: cover; /* keeps full coverage without white gaps */
+   display: block;
 }
+
 
 /* Example navbar styling */
 .custom-navbar {
