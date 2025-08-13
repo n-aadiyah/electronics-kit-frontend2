@@ -1,36 +1,88 @@
+/* Base styling for the page */
 .stemkit-page {
-  background-color: hsl(182, 41%, 48%);
-  min-height:150;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px; /* Adjust based on your navbar height */
+  padding-bottom: 60px;
 }
 
+/* Image container */
 .stemkit-image-container {
-  width: 100%;
-  height: calc(140vh - 150px - 40px); /* Navbar height + footer height */
+  width:500px;
+  max-width: 1200px;
   overflow: hidden;
 }
+
+/* Image styling */
 .stemkit-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* keeps full coverage without white gaps */
-}
-/* Example navbar styling */
-.custom-navbar {
-  background-color: hsl(182, 41%, 48%);
-  padding: 1rem;
+  width: 500px;
+  height: auto;
+  display: block;
 }
 
-.custom-navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
+/* -------- Media Queries -------- */
+
+/* Tablet screens (max-width 1024px) */
+@media (max-width: 1024px) {
+  .stemkit-page {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+
+  .stemkit-image {
+    border-radius: 8px;
+  }
+}
+
+/* Mobile screens (max-width 768px) */
+@media (max-width: 768px) {
+  .stemkit-page {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+
+  .stemkit-image-container {
+    padding: 0 10px;
+  }
+
+  .stemkit-image {
+    border-radius: 6px;
+  }
+}
+
+/* Extra small mobile screens (max-width 480px) */
+@media (max-width: 480px) {
+  .stemkit-page {
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+
+  .stemkit-image {
+    border-radius: 4px;
+  }
+}
+/* Position the button absolutely inside the container */
+.view-details-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Styling for the button */
+  background-color: #007bff;
   color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
   font-weight: bold;
+  font-size: 1rem;
+
+  /* Optional: add a subtle shadow to stand out */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-.custom-navbar li {
-  cursor: pointer;
+.view-details-btn:hover {
+  background-color: #0056b3;
 }

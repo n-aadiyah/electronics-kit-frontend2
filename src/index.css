@@ -1,58 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
 
+/* Global Resets */
+:root {
+  --navbar-height: 70px; /* Default navbar height, can be overridden in JS if needed */
+}
+
 body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
-   box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* Unified custom nav link style */
-/* .nav-link-custom {
-  color: #333;
-  font-weight: 500;
-  text-decoration: none;
-  position: relative;
-  padding-bottom: 2px;
-  transition: color 0.3s ease;
-} */
-
-/* Underline effect on hover */
-/* .nav-link-custom::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #09110d; /* Bootstrap green */
-  /* transition: width 0.3s ease;
-} */ 
-
-/* Hover effect */
-/* .nav-link-custom:hover {
-  color: #040505;
-}
-
-.nav-link-custom:hover::after {
-  width: 100%;
-} */
+/* Gradient Buttons */
 .custom-view-btn {
-background: #0c0e0d;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #373B44, #73C8A9);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #373B44, #73C8A9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B89C93", endColorstr="#8E6865", GradientType=1 );  color: rgb(203, 202, 201) !important;
+  background: #0c0e0d;
+  background: -webkit-linear-gradient(to right, #373B44, #73C8A9);
+  background: linear-gradient(to right, #373B44, #73C8A9);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#B89C93", endColorstr="#8E6865", GradientType=1);
+  color: rgb(203, 202, 201) !important;
   font-weight: bold !important;
   border: none !important;
   transition: 0.3s ease;
 }
-
 .custom-view-btn:hover {
   background-color: #467c66 !important;
   color: #000000 !important;
 }
+
 .my-account-btn {
   background: hsla(180, 13%, 58%, 1);
   background: linear-gradient(120deg, hsla(180, 13%, 58%, 1) 0%, hsla(335, 16%, 61%, 1) 100%);
@@ -65,18 +42,51 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B89C93", en
   padding: 8px 16px;
   border-radius: 6px;
 }
-
 .my-account-btn:hover {
   background-color: #380606af !important;
   color: #000000 !important;
 }
-.shopnow-btn {
-background: #e9d362;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #333333, #e9d362);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #333333, #e9d362); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+.shopnow-btn {
+  background: #e9d362;
+  background: -webkit-linear-gradient(to right, #333333, #e9d362);
+  background: linear-gradient(to right, #333333, #e9d362);
   font-weight: bold !important;
   border: none !important;
-  transition: 0.3s ease;                                                      
+  transition: 0.3s ease;
 }
 
+/* Responsive Typography */
+h1, h2, h3, h4, h5 {
+  word-wrap: break-word;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+/* Responsive Fix for Hero Section */
+.hero-section {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Utility Class for Full Height minus Navbar */
+.full-height-minus-navbar {
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+/* Media Queries for Small Screens */
+@media (max-width: 768px) {
+  .custom-view-btn,
+  .my-account-btn,
+  .shopnow-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
