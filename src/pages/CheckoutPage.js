@@ -93,7 +93,7 @@ const CheckoutPage = () => {
     };
 
     try {
-      const res = await fetch(`${BASE_URL}/api/orders`, {
+      const res = await fetch(`${BASE_URL}/api/orders/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +124,7 @@ const CheckoutPage = () => {
     : cartItems;
 
   return (
-    <div className="container my-" style={{ marginTop: "90px" }}>
+    <div className="container my-6" style={{ marginTop: "90px" }}>
       <div className="row">
         {/* Shipping Form */}
         <div className="col-lg-8 col-md-8 mb-4">
