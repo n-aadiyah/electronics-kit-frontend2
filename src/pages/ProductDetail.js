@@ -60,7 +60,7 @@ const ProductDetail = () => {
   } = product;
 
   return (
-    <div style={{ paddingTop: "60px" }}>
+    <div style={{ paddingTop: "70px" }}>
       <Navbar />
       <div className="container py-4">
         <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>

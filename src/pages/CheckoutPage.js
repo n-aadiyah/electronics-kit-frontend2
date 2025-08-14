@@ -124,7 +124,7 @@ const CheckoutPage = () => {
     : cartItems;
 
   return (
-    <div className="container my-5" style={{ marginTop: "80px" }}>
+    <div className="container my-" style={{ marginTop: "90px" }}>
       <div className="row">
         {/* Shipping Form */}
         <div className="col-lg-8 col-md-8 mb-4">

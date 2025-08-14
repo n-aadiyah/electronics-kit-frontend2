@@ -3,22 +3,22 @@ import { useNavigate } from "react-router-dom";
 import "./StemKitPage.css";
 
 const StemKitPage = () => {
-     const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    navigate("/stemkit-details"); // Change to your details page route
+    navigate("/stemkit-details");
   };
 
   return (
     <div className="stemkit-page">
-      {/* Fullscreen Image */}
+
+      {/* Foreground content */}
       <div className="stemkit-image-container">
         <img
           src="/images/stem-explorer-kit.jpg"
           alt="STEM Explorer Kit"
           className="stemkit-image"
         />
-          {/* View Details Button */}
         <button
           className="view-details-btn"
           onClick={handleViewDetails}

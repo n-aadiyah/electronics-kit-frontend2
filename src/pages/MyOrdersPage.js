@@ -42,7 +42,7 @@ const MyOrdersPage = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "70vh" }}>
         <div className="text-muted">Loading your orders...</div>
       </div>
     );
@@ -79,7 +79,7 @@ const MyOrdersPage = () => {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-6">
       <h3 className="mb-4">My Orders</h3>
       {orders.map((order) => (
         <div key={order._id} className="card mb-4 p-3 shadow-sm">
