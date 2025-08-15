@@ -64,7 +64,7 @@ const MonthlyKitPage = () => {
       {/* Feature 1 */}
       <div className="col-12 col-md-6 col-lg-4">
         <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-          <i className="bi bi-box fs-1 mb-3" style={{ color: "#39b6f9ff" }}></i>
+          <img src="/images/hand-on.png" alt="Hands-On Learning" className="mb-3" style={{ width: "70px", height: "70px" }} />
           <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
             Hands-On Learning
           </h4>
@@ -77,7 +77,7 @@ const MonthlyKitPage = () => {
       {/* Feature 2 */}
       <div className="col-12 col-md-6 col-lg-4">
         <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-          <i className="bi  bi-motherboard fs-1 mb-3" style={{ color: "#e9f32cff" }}></i>
+          <img src="/images/monthly theme.png" alt="Monthly Theme-Based Projects" className="mb-3" style={{ width: "70px", height: "70px" }} />
           <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
             Monthly Theme-Based Projects
           </h4>
@@ -90,7 +90,7 @@ const MonthlyKitPage = () => {
       {/* Feature 3 */}
       <div className="col-12 col-md-6 col-lg-4">
         <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-          <i className="bi bi-camera-reels-fill fs-1 mb-3" style={{ color: "#1d8426ff" }}></i>
+<img src="/images/industry-banner-image-vector.png" alt="Live Support" className="mb-3" style={{ width: "70px", height: "70px" }} />
           <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
             Guided Video Tutorials
           </h4>
@@ -103,7 +103,7 @@ const MonthlyKitPage = () => {
       {/* Feature 4 */}
       <div className="col-12 col-md-6 col-lg-4">
         <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-          <i className="bi bi-person-gear fs-1 mb-3" style={{ color: "#e9f32cff" }}></i>
+<img src="/images/live support.jpg" alt="Live Support" className="mb-3" style={{ width: "70px", height: "70px" }} />
           <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
             Live Support & Mentorship
           </h4>
@@ -116,7 +116,7 @@ const MonthlyKitPage = () => {
       {/* Feature 5 */}
       <div className="col-12 col-md-6 col-lg-4">
         <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-          <i className="bi bi-patch-check-fill fs-1 mb-3" style={{ color: "#1d8426ff" }}></i>
+          <img src="/images/certification.png" alt="Monthly Theme-Based Projects" className="mb-3" style={{ width: "70px", height: "70px" }} />
           <h3 className="text-dark fs-5 fw-bold lh-tight mb-0">
             Certification & Badges
           </h3>
@@ -127,9 +127,9 @@ const MonthlyKitPage = () => {
       </div>
 
       {/* Feature 6 */}
-      <div className="col-12 col-md-6 col-lg-4">
+      <div className="col-12 col-md-5 col-lg-4">
         <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-          <i className="bi bi-calendar2 fs-1 mb-3" style={{ color: "#39b6f9ff" }}></i>
+          <img src="/images/calender.png" alt="Monthly Theme-Based Projects" className="mb-3" style={{ width: "70px", height: "70px" }} />
           <h3 className="text-dark fs-5 fw-bold lh-tight mb-0">
             Free Vacation Camp Access
           </h3>
