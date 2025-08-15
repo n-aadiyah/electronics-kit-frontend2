@@ -50,72 +50,94 @@ const MonthlyKitPage = () => {
     </div>
   </div>
 </section>
-     {/* Features Section */}
+    {/* Features Section */}
 <section className="container py-6">
-    <div className="bg-light p-4 rounded shadow-sm">
-  <h1 className="fw-bold fs-3 mb-3 text-center text-md-center">
-Key Features Of Our 12 Month Stem Program</h1>
-<p className="text-muted text-center">Our program is designed to provide to comprehensive and engaging learning for students in grades 5-12 </p>
-  <div className="row g-4">
-    {/* Feature 1 */}
-    <div className="col-12 col-md-6 col-lg-4">
-      <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-        <i className="bi bi-box fs-2  mb-3" style={{ color: "#39b6f9ff" }}></i>
-        <h3 className="text-dark fs-6 fw-bold lh-tight mb-0">
-          Theme-Based DIY Kits
-        </h3>
-      </div>
-    </div>
+  <div className="bg-light p-4 rounded shadow-sm">
+    <h1 className="fw-bold fs-2 mb-3 text-center text-md-center">
+      Key Features of Our 12-Month STEM Program
+    </h1>
+    <p className="text-muted text-center">
+      Our 12-month STEM program offers a structured, hands-on learning experience designed to inspire innovation and critical thinking among students from Grades 5 to 12.
+    </p>
 
-    {/* Feature 2 */}
-    <div className="col-12 col-md-6 col-lg-4">
-      <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-        <i className="bi bi-camera-reels-fill fs-2 mb-3" style={{ color: "#1d8426ff" }}></i>
-        <h3 className="text-dark fs-6 fw-bold lh-tight mb-0">
-          Step-by-Step Video Tutorials
-        </h3>
+    <div className="row g-4">
+      {/* Feature 1 */}
+      <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
+          <i className="bi bi-box fs-1 mb-3" style={{ color: "#39b6f9ff" }}></i>
+          <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
+            Hands-On Learning
+          </h4>
+          <p className="text-muted fs-6">
+            Engage with electronics, sensors, and microcontrollers through real-world DIY kits that encourage creativity and practical problem-solving.
+          </p>
+        </div>
       </div>
-    </div>
 
-    {/* Feature 3 */}
-    <div className="col-12 col-md-6 col-lg-4">
-      <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-        <i className="bi bi-person-gear fs-2 mb-3" style={{ color: "#e9f32cff" }}></i>
-        <h3 className="text-dark fs-6 fw-bold lh-tight mb-0">
-          Live Online Support
-        </h3>
+      {/* Feature 2 */}
+      <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
+          <i className="bi  bi-motherboard fs-1 mb-3" style={{ color: "#e9f32cff" }}></i>
+          <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
+            Monthly Theme-Based Projects
+          </h4>
+          <p className="text-muted fs-6">
+            Explore a new theme each month—such as robotics, smart farming, AI, or automation—ensuring learning stays dynamic and engaging.
+          </p>
+        </div>
       </div>
-    </div>
 
-    {/* Feature 4 */}
-    <div className="col-12 col-md-6 col-lg-4">
-      <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-        <i className="bi bi-patch-check-fill fs-2  mb-3" style={{ color: "#1d8426ff" }}></i>
-        <h3 className="text-dark fs-6 fw-bold lh-tight mb-0">
-          Certification & Badge
-        </h3>
+      {/* Feature 3 */}
+      <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
+          <i className="bi bi-camera-reels-fill fs-1 mb-3" style={{ color: "#1d8426ff" }}></i>
+          <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
+            Guided Video Tutorials
+          </h4>
+          <p className="text-muted fs-6">
+            Learn at your own pace with step-by-step expert-led video tutorials—ideal for both beginners and advanced learners.
+          </p>
+        </div>
       </div>
-    </div>
 
-    {/* Feature 5 */}
-    <div className="col-12 col-md-6 col-lg-4">
-      <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-        <i className="bi bi-whatsapp fs-2 mb-3" style={{ color: "#e9f32cff" }}></i>
-        <h3 className="text-dark fs-6 fw-bold lh-tight mb-0">
-          WhatsApp Community Access
-        </h3>
+      {/* Feature 4 */}
+      <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
+          <i className="bi bi-person-gear fs-1 mb-3" style={{ color: "#e9f32cff" }}></i>
+          <h4 className="text-dark fs-5 fw-bold lh-tight mb-0">
+            Live Support & Mentorship
+          </h4>
+          <p className="text-muted fs-6">
+            Participate in monthly live sessions for project demonstrations, troubleshooting, and personalized mentorship from industry experts.
+          </p>
+        </div>
       </div>
-    </div>
 
-    {/* Feature 6 */}
-    <div className="col-12 col-md-6 col-lg-4">
-      <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
-<i className="bi bi-code-slash fs-2 mb-3" style={{ color: "#39b6f9ff" }}></i>
-        <h3 className="text-dark fs-6 fw-bold lh-tight mb-0">
-          Develop Skills
-        </h3>
+      {/* Feature 5 */}
+      <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
+          <i className="bi bi-patch-check-fill fs-1 mb-3" style={{ color: "#1d8426ff" }}></i>
+          <h3 className="text-dark fs-5 fw-bold lh-tight mb-0">
+            Certification & Badges
+          </h3>
+          <p className="text-muted fs-6">
+            Receive digital certificates and collectible badges each month to recognize your achievements and track your progress.
+          </p>
+        </div>
       </div>
-    </div>
+
+      {/* Feature 6 */}
+      <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start p-3 border rounded h-100">
+          <i className="bi bi-calendar2 fs-1 mb-3" style={{ color: "#39b6f9ff" }}></i>
+          <h3 className="text-dark fs-5 fw-bold lh-tight mb-0">
+            Free Vacation Camp Access
+          </h3>
+          <p className="text-muted fs-6">
+            Students opting for one-time payment enjoy exclusive access to a hands-on innovation camp during school holidays.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
