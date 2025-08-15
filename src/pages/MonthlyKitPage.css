@@ -1,0 +1,116 @@
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+section, .container, .row {
+  height: auto !important;
+}
+/* Brand icon */
+.brand-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Buttons */
+.custom-btn {
+  background-color: #2586f4;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: background-color 0.2s ease-in-out;
+}
+.custom-btn:hover {
+  background-color: #1f6fd1;
+  color: white;
+}
+
+/* Features */
+.feature-card {
+  border: 1px solid #dbe0e6;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+}
+
+/* Hero image */
+.hero-image {
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  aspect-ratio: 16/9;
+  min-height: 300px;
+}
+
+/* Section title */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Subscription cards */
+.subscription-card {
+  background: #fff;
+  border: 1px solid #dbe0e6;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.subscription-card:hover {
+  border-color: #d86a1c; /* Professional blue border */
+  box-shadow: 0 4px 12px rgba(228, 247, 84, 0.2); /* Matching shadow */
+}
+
+.badge-popular {
+  background-color: #ff7f50;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.btn-subscribe {
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-subscribe:hover {
+  background-color: #b65011;
+}
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.feature-item i {
+  color: #2586f4;
+}
+
+/* Monthly themes horizontal scroll */
+::-webkit-scrollbar {
+  display: none;
+}
+.special-offer-badge {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  background-color: #de4e4e;
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+

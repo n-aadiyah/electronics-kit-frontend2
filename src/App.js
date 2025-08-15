@@ -4,12 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
-import StemKitPage from "./pages/StemKitPage"; 
-import StemKitDetailsPage from "./pages/StemKitDetailsPage";
 import AuthPage from './pages/AuthPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProductDetail from './pages/ProductDetail';
 import Products from "./pages/Products";
+import MonthlyKitPage from "./pages/MonthlyKitPage";
 import MyOrdersPage from './pages/MyOrdersPage';
 import ViewCartPage from "./pages/ViewCartPage";
 import CartPage from "./pages/CartPage";
@@ -37,11 +36,9 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
-           <Route path="/stemkit" element={<StemKitPage />} />
-           <Route path="/stemkit-details" element={<StemKitDetailsPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/products" element={<Products />} />
-          <Route
+<Route path="/monthly-kit" element={<MonthlyKitPage />} />          <Route
             path="/product/:id"
             element={<ProductDetail onAddToCart={handleShowCartModal} />}
           />

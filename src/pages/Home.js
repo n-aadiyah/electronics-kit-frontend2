@@ -54,7 +54,7 @@ const Home = () => {
               md={4}
               className="mb-4"
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/stemkit")}
+              onClick={() => navigate("/monthly-kit")}
             >
               <img
                 src="/images/boxreact1.png"
