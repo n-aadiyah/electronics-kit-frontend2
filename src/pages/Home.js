@@ -5,17 +5,16 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 
 const Home = () => {
   const navigate = useNavigate();
-
   return (
     <>
       {/* Top Section */}
       <div className="container-fluid" style={{ backgroundColor: "#48AAAD" }}>
         {/* Navbar with Logo */}
         <Container>
-          <Row className="align-items-center" style={{ minHeight: "50vh" }}>
+          <Row className="align-items-start" style={{ minHeight: "50vh" }}>
             {/* Text Content */}
-            <Col md={7} className="text-black text-center text-md-start p-0">
-              <h1 className="fw-bold display-2 display-md-4 p-0 mt-0">
+            <Col md={5} className="text-black text-start  p-0 mt-5">
+              <h1 className="fw-bold display-2 display-md-2 p-0 mt-0">
                 From Curiosity to Creation
               </h1>
               <Button
@@ -28,7 +27,7 @@ const Home = () => {
             </Col>
 
             {/* Image */}
-            <Col md={4} className="text-center mt-5 mt-md-n6">
+            <Col md={4} className="text-center mt-5 mt-md-n7">
               <img
                 src="/images/stemtans.png"
                 alt="STEM Kit"
@@ -87,25 +86,6 @@ const Home = () => {
                 style={{ maxWidth: "150px" }}
               />
               <h3 className="fw-bold">School Lab Bundles</h3>
-            </Col>
-          </Row>
-
-          {/* Row 2 - Sub Titles / Descriptions */}
-          <Row className="text-center justify-content-center">
-            <Col xs={12} md={4} className="mb-3">
-              <h4 className="text-muted">
-                <b>Monthly STEM kits</b>
-              </h4>
-            </Col>
-            <Col xs={12} md={4} className="mb-3">
-              <h4 className="text-muted">
-                <b>DIY Electronics Tools</b>
-              </h4>
-            </Col>
-            <Col xs={12} md={4} className="mb-3">
-              <h4 className="text-muted">
-                <b>School Lab Bundles</b>
-              </h4>
             </Col>
           </Row>
         </Container>
