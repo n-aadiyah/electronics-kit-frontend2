@@ -440,11 +440,11 @@ const MonthlyKitPage = () => {
 </div>
 <section className="container text-center my-5">
   <div
-    className="p-4 rounded-3 text-white"
+    className="p-4 rounded-3 text-black"
     style={{ backgroundColor: "#48AAAD" }}
   >
-    <h2 className="fw-bold mb-3">Ready to Ignite Curiosity?</h2>
-    <p className="mb-4">
+    <h2 className="fw-bold mb-3 ">Ready to Ignite Curiosity?</h2>
+    <p className="mb-4" style={{ color: "#ffffff" }}>
       Make a one-time payment and get a free vacation camp for your child.
       Limited spots available, so don’t miss out on this amazing opportunity!
     </p>
