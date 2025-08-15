@@ -17,9 +17,9 @@ const MonthlyKitPage = () => {
     {/* Hero Image with overlay */}
     <div className="col-lg-12" >
       <div
-        className="d-flex flex-column align-items-left justify-content-center text-center rounded p-4 p-lg-5"
+        className="d-flex flex-column align-items-left justify-content-center text-center rounded p-5 p-lg-5"
         style={{
-          minHeight: "500px",
+          minHeight: "300px",
           backgroundImage:
             'linear-gradient(rgba(29, 149, 186, 0.2), rgba(0,0,0,0.5)), url("/images/stem box.png")',
           backgroundSize: "cover",
@@ -46,6 +46,8 @@ const MonthlyKitPage = () => {
   Subscribe Now
 </button>
             </div>
+              <p className="text-muted fs-6  mt-6 mb-4 text-end">
+        - A product by Maklab Innovations. </p>
       </div>
     </div>
   </div>
