@@ -79,8 +79,9 @@ const MyOrdersPage = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <h3 className="mb-5 mt-5">My Orders</h3>
+ <div className="container pt-5 mt-5">
+  <h3 className="mb-5">My Orders</h3>
+
       {orders.map((order) => (
         <div key={order._id} className="card mt-5 mb-5 p-4 shadow-sm">
           <div className="d-flex justify-content-between flex-wrap">

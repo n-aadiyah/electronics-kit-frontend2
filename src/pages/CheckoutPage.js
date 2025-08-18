@@ -124,13 +124,12 @@ const CheckoutPage = () => {
     : cartItems;
 
   return (
-    <div className="container mt-5 my-6" style={{ marginTop: "90px" }}>
+<div className="container pt-5" style={{ marginTop: "70px" }}>
       <div className="row">
         {/* Shipping Form */}
-        <div className="col-lg-8 col-md-8 mb-4">
+<div className="col-lg-8 col-md-8 mb-4">
           <form onSubmit={handleSubmit}>
-            <h4 className="mb-4">Shipping Information</h4>
-
+<h3 className="mb-3">Shipping Information</h3>
             <input
               type="text"
               name="name"
@@ -196,8 +195,8 @@ const CheckoutPage = () => {
         </div>
 
         {/* Order Summary */}
-        <div className="col-md-4 mt-5 mt-md-0">
-          <h5 className="mb-3">Order Summary</h5>
+<div className="col-md-4 mt-4 mt-md-0">
+<h3 className="mb-2">Order Summary</h3>
           {productsToCheckout.length === 0 ? (
             <p className="text-muted">Your cart is empty.</p>
           ) : (
