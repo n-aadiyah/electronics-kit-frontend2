@@ -79,9 +79,9 @@ const AuthPage = () => {
           style={{ maxWidth: "900px" }}
         >
           <div className="col-md-7 bg-black px-5 py-4">
-            <h2 className="fw-bold pb-3" style={{ color: "#81650fff" }}>
-              {isLogin ? "Welcome back!" : "Create your account"}
-            </h2>
+  <h1 className="fw-bold pb-3 text-white">
+    {isLogin ? "Welcome back!" : "Create your account"}
+  </h1>
             <form onSubmit={handleSubmit}>
               {!isLogin && (
                 <div className="mb-3 text-white">
@@ -124,11 +124,11 @@ const AuthPage = () => {
                 />
               </div>
 
-              {isLogin && (
-                <p className="auth-forgot mt-2" style={{ color: "#81650fff" }}>
-                  Forgot your password?
-                </p>
-              )}
+      {isLogin && (
+    <a href="/forgot-password" className="d-block mt-2" style={{ color: "#ffcc66" }}>
+      Forgot your password?
+    </a>
+  )}
 
               <button
                 type="submit"
@@ -152,12 +152,10 @@ const AuthPage = () => {
             )}
           </div>
 
-          <div className="col-md-5 bg-white d-flex flex-column justify-content-center align-items-center auth-toggle-section">
-            <h4 className="fw-bold text-center">
-              {isLogin
-                ? "Don't have an account?"
-                : "Already have an account?"}
-            </h4>
+       <div className="col-md-5 bg-white d-flex flex-column justify-content-center align-items-center p-4">
+  <h2 className="fw-bold text-center">
+    {isLogin ? "Don't have an account?" : "Already have an account?"}
+  </h2>
             <button
               className="btn rounded-pill mt-4 w-100"
               style={{

@@ -8,32 +8,31 @@ const Home = () => {
   return (
     <>
       {/* Top Section */}
-      <div className="container-fluid" style={{ backgroundColor: "#48AAAD" }}>
-        {/* Navbar with Logo */}
+      <div className="container-fluid" style={{ backgroundColor: "#48AAAD" , paddingTop: "70px",paddingBottom: "40px",}}>
         <Container>
-          <Row className="align-items-center" style={{ minHeight: "50vh" }}>
-  {/* Text Content */}
-  <Col md={5} className="text-black text-start p-0">
-    <h1 className="fw-bold display-2 mb-4">
-      From Curiosity to Creation
-    </h1>
-    <Button
-      size="lg"
-      className="fw-bold custom-btn"
-      href="/products"
-    >
-      Start Building
-    </Button>
-  </Col>
+          <Row className="align-items-center" >
+            {/* Text Content */}
+            <Col md={5} className="text-black text-start p-0">
+              <h1 className="fw-bold display-2 mb-4 mt-0">
+                From Curiosity to Creation
+              </h1>
+              <Button
+                size="lg"
+                className="fw-bold custom-btn"
+                href="/products"
+              >
+                Start Building
+              </Button>
+            </Col>
 
             {/* Image */}
-            <Col md={4} className="text-center mt-5 mt-md-n7">
+            <Col md={7} className="text-center">
               <img
                 src="/images/stemtans.png"
                 alt="STEM Kit"
                 className="img-fluid"
                 style={{
-                  transform: "rotate(+10deg)",
+                  transform: "rotate(10deg)",
                   transition: "transform 0.3s ease-in-out",
                   backgroundColor: "transparent",
                 }}
@@ -46,8 +45,15 @@ const Home = () => {
       {/* Bottom Section */}
       <div className="bg-white py-5">
         <Container>
+          {/* Section Heading */}
+          <Row className="mb-5">
+            <Col className="text-center">
+              <h2 className="fw-bold">Explore Our Kits & Tools</h2>
+            </Col>
+          </Row>
+
           {/* Row 1 - Images */}
-          <Row className="text-center justify-content-center mb-5">
+          <Row className="text-center justify-content-center">
             <Col
               xs={12}
               md={4}
@@ -64,9 +70,13 @@ const Home = () => {
               <h3 className="fw-bold">Monthly STEM Kits</h3>
             </Col>
 
-            <Col xs={12} md={4} className="mb-4"
-             style={{ cursor: "pointer" }}
-              onClick={() => navigate("/products")}>
+            <Col
+              xs={12}
+              md={4}
+              className="mb-4"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/products")}
+            >
               <img
                 src="/images/soldering1.png"
                 alt="DIY Electronics Tools"
@@ -76,9 +86,13 @@ const Home = () => {
               <h3 className="fw-bold">DIY Electronics Tools</h3>
             </Col>
 
-            <Col xs={12} md={4} className="mb-4"
-            style={{ cursor: "pointer" }}
-              onClick={() => navigate("/products")}>
+            <Col
+              xs={12}
+              md={4}
+              className="mb-4"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/products")}
+            >
               <img
                 src="/images/chem1.png"
                 alt="School Lab Bundles"
