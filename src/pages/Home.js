@@ -11,20 +11,20 @@ const Home = () => {
       <div className="container-fluid" style={{ backgroundColor: "#48AAAD" }}>
         {/* Navbar with Logo */}
         <Container>
-          <Row className="align-items-start" style={{ minHeight: "50vh" }}>
-            {/* Text Content */}
-            <Col md={5} className="text-black text-start  p-0 mt-5">
-              <h1 className="fw-bold display-2 display-md-2 p-0 mt-0">
-                From Curiosity to Creation
-              </h1>
-              <Button
-                size="md"
-                className="mt-2 fw-bold custom-btn"
-                href="/products"
-              >
-                Start Building
-              </Button>
-            </Col>
+          <Row className="align-items-center" style={{ minHeight: "50vh" }}>
+  {/* Text Content */}
+  <Col md={5} className="text-black text-start p-0">
+    <h1 className="fw-bold display-2 mb-4">
+      From Curiosity to Creation
+    </h1>
+    <Button
+      size="lg"
+      className="fw-bold custom-btn"
+      href="/products"
+    >
+      Start Building
+    </Button>
+  </Col>
 
             {/* Image */}
             <Col md={4} className="text-center mt-5 mt-md-n7">

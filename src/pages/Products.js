@@ -43,10 +43,10 @@ const Products = () => {
       : products.filter((p) => p.category === selectedCategory);
 
   return (
-    <div style={{ paddingTop: "120px", width: "100%", overflowX: "hidden" }}>
+    <div style={{ paddingTop: "60px", width: "100%", overflowX: "hidden" }}>
       <Navbar />
       <main className="container py-5">
-        <h2 className="text-center mb-4 fw-bold">All Electronics Kits</h2>
+        <h2 className="text-center mb-3 fw-bold">All Electronics Kits</h2>
 
         <CategoryTabs
           categories={categories}

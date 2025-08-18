@@ -65,7 +65,7 @@ const ViewCartPage = () => {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container mt-5 py-5">
       <div className="row">
         {/* Left Section - Cart Items */}
         <div className="col-md-8">

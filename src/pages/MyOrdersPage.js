@@ -42,7 +42,7 @@ const MyOrdersPage = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "70vh" }}>
+      <div className="d-flex justify-content-center align-items-center " style={{ height: "70vh" }}>
         <div className="text-muted">Loading your orders...</div>
       </div>
     );
@@ -50,8 +50,8 @@ const MyOrdersPage = () => {
 
   if (error) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
-        <div className="text-center border rounded p-4 shadow-sm" style={{ maxWidth: "400px" }}>
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "70vh" }}>
+        <div className="text-center border rounded p-3 shadow-sm" style={{ maxWidth: "400px" }}>
           <h5 className="text-danger mb-3">Oops!</h5>
           <p className="text-muted mb-3">{error}</p>
           {error.toLowerCase().includes("login") && (
@@ -66,7 +66,7 @@ const MyOrdersPage = () => {
 
   if (orders.length === 0) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "70vh" }}>
         <div className="text-center text-muted">
           <h3>🛍️ No Orders Yet</h3>
           <p>Looks like you haven't placed any orders yet.</p>
@@ -79,10 +79,10 @@ const MyOrdersPage = () => {
   }
 
   return (
-    <div className="container mt-6">
-      <h3 className="mb-4">My Orders</h3>
+    <div className="container mt-5">
+      <h3 className="mb-5 mt-5">My Orders</h3>
       {orders.map((order) => (
-        <div key={order._id} className="card mb-4 p-3 shadow-sm">
+        <div key={order._id} className="card mt-5 mb-5 p-4 shadow-sm">
           <div className="d-flex justify-content-between flex-wrap">
             <div><strong>Order ID:</strong> {order._id}</div>
             <div><strong>Placed:</strong> {new Date(order.orderedAt).toLocaleString()}</div>
@@ -92,7 +92,7 @@ const MyOrdersPage = () => {
 
           <div className="row">
             {order.items.map((item) => (
-              <div key={item._id} className="col-md-4 mb-3">
+              <div key={item._id} className="col-md-4 mt-5 mb-3">
                 <div className="d-flex align-items-center gap-3">
                   <img
                     src={`/${item.productId.image}`}

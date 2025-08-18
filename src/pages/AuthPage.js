@@ -73,7 +73,7 @@ const AuthPage = () => {
       className="min-vh-100 d-flex flex-column bg-white"
       style={{ fontFamily: "Inter, Noto Sans, sans-serif" }}
     >
-      <main className="container py-5 d-flex justify-content-center flex-grow-1">
+      <main className="container mt-5 py-4 d-flex justify-content-center flex-grow-1">
         <div
           className="row w-100 shadow-lg rounded-4 overflow-hidden"
           style={{ maxWidth: "900px" }}
