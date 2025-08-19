@@ -63,6 +63,8 @@ const StemKitCheckoutPage = () => {
       price: subtotal,
       shippingInfo: { ...shippingDetails },
     };
+      // ✅ Add this line to check the API URL
+  console.log("BASE_URL:", BASE_URL);
 
     try {
       const res = await fetch(`${BASE_URL}/api/stemkit-orders`, {
