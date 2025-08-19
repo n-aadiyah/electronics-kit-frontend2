@@ -9,7 +9,6 @@ const StemKitCheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Correctly read selected kit and subscription from location state
   const stemKitData = location.state?.selectedKit;
   const subscriptionData = location.state?.selectedSubscription;
 
@@ -25,14 +24,12 @@ const StemKitCheckoutPage = () => {
 
   const [subtotal, setSubtotal] = useState(subscriptionData?.price || 0);
 
-  // Redirect if no kit/subscription selected
   useEffect(() => {
     if (!stemKitData || !subscriptionData) {
       navigate("/stemkits");
     }
   }, [stemKitData, subscriptionData, navigate]);
 
-  // Update subtotal if quantity changes
   useEffect(() => {
     if (subscriptionData) {
       setSubtotal(subscriptionData.price * quantity);
@@ -59,11 +56,10 @@ const StemKitCheckoutPage = () => {
       return;
     }
 
+    // Correct payload to match backend
     const orderData = {
-      user: "", // backend will get user from token
-      stemKit: stemKitData._id,
+      stemKitId: stemKitData._id,
       subscriptionType: subscriptionData.type,
-      quantity,
       price: subtotal,
       shippingInfo: { ...shippingDetails },
     };
@@ -96,11 +92,9 @@ const StemKitCheckoutPage = () => {
   return (
     <div className="container pt-5" style={{ marginTop: "70px" }}>
       <div className="row">
-        {/* Shipping Form */}
         <div className="col-lg-8 col-md-8 mb-4">
           <form onSubmit={handleSubmit}>
             <h3 className="mb-3">Shipping Information</h3>
-
             <input
               type="text"
               name="name"
@@ -110,7 +104,6 @@ const StemKitCheckoutPage = () => {
               value={shippingDetails.name}
               onChange={handleChange}
             />
-
             <input
               type="email"
               name="email"
@@ -120,7 +113,6 @@ const StemKitCheckoutPage = () => {
               value={shippingDetails.email}
               onChange={handleChange}
             />
-
             <input
               type="text"
               name="address"
@@ -130,7 +122,6 @@ const StemKitCheckoutPage = () => {
               value={shippingDetails.address}
               onChange={handleChange}
             />
-
             <div className="row mb-3">
               <div className="col">
                 <input
@@ -155,7 +146,6 @@ const StemKitCheckoutPage = () => {
                 />
               </div>
             </div>
-
             <input
               type="tel"
               name="phone"
@@ -165,7 +155,6 @@ const StemKitCheckoutPage = () => {
               value={shippingDetails.phone}
               onChange={handleChange}
             />
-
             <button
               type="submit"
               className="btn btn-dark rounded-pill w-100 mt-3"
@@ -175,7 +164,6 @@ const StemKitCheckoutPage = () => {
           </form>
         </div>
 
-        {/* Order Summary */}
         <div className="col-md-4 mt-4 mt-md-0">
           <h3 className="mb-2">Order Summary</h3>
           <div className="d-flex align-items-center mb-3">
@@ -208,7 +196,6 @@ const StemKitCheckoutPage = () => {
               </div>
             </div>
           </div>
-
           <hr />
           <div className="d-flex justify-content-between py-1">
             <span className="text-muted">Subscription</span>
