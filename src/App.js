@@ -9,6 +9,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ProductDetail from './pages/ProductDetail';
 import Products from "./pages/Products";
 import MonthlyKitPage from "./pages/MonthlyKitPage";
+import StemKitPage from "./pages/StemKitPage";
+import StemKitCheckoutPage from "./pages/StemKitCheckoutPage";
 import MyOrdersPage from './pages/MyOrdersPage';
 import ViewCartPage from "./pages/ViewCartPage";
 import CartPage from "./pages/CartPage";
@@ -38,7 +40,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/products" element={<Products />} />
-<Route path="/monthly-kit" element={<MonthlyKitPage />} />          <Route
+          <Route path="/monthly-kit" element={<MonthlyKitPage />} />
+          <Route path="/StemKitPage" element={<StemKitPage />} />
+          <Route path="/stemkit-checkout" element={<StemKitCheckoutPage />} />
+          <Route
             path="/product/:id"
             element={<ProductDetail onAddToCart={handleShowCartModal} />}
           />

@@ -2,7 +2,19 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./MonthlyKitPage.css";
+import { useNavigate } from "react-router-dom";
+
 const MonthlyKitPage = () => {
+  const navigate = useNavigate();
+
+ const handleSubscribeClick = () => {
+    const token = localStorage.getItem("token"); // check JWT token
+    if (token) {
+      navigate("/StemKitPage"); // ✅ user logged in → go to StemKitPage
+    } else {
+      navigate("/auth"); // ❌ not logged in → go to login
+    }
+  };
   return (
     <div
       className="d-flex flex-column"
@@ -39,12 +51,14 @@ const MonthlyKitPage = () => {
           through engaging projects.
         </p>
          <div className="w-100 d-flex justify-content-left">
-          <button
+ <button
   className="btn px-4 py-2 fw-bold text-white"
   style={{ backgroundColor: "#d67215ff", border: "none" }}
+  onClick={handleSubscribeClick}   // ✅ added this
 >
   Subscribe Now
 </button>
+
             </div>
               <p className="text-muted fs-6  mt-6 mb-4 text-end">
         - A product by Maklab Innovations. </p>
@@ -218,8 +232,12 @@ const MonthlyKitPage = () => {
             <span className="display-6 fw-bold text-dark">₹9999</span>
             <span className="text-muted fw-semibold">/year</span>
           </p>
-          <button className="btn-subscribe w-auto mb-3">Subscribe Now</button>
-          <ul className="list-unstyled small">
+<button 
+  className="btn-subscribe w-auto mb-3" 
+  onClick={handleSubscribeClick}   // ✅ added this
+>
+  Subscribe Now
+</button>          <ul className="list-unstyled small">
             <li className="mb-2">
               <i className="bi bi-check-circle text-primary me-2"></i>
               12 Monthly Kits
@@ -245,8 +263,12 @@ const MonthlyKitPage = () => {
       <span className="display-6 fw-bold text-dark">₹5500</span>
       <span className="text-muted fw-semibold">x 2 installments</span>
     </p>
-    <button className="btn-subscribe w-auto mb-3">Subscribe Now</button>
-    <div>
+<button 
+  className="btn-subscribe w-auto mb-3" 
+  onClick={handleSubscribeClick}   // ✅ added this
+>
+  Subscribe Now
+</button>    <div>
       <div className="feature-item mb-2">
         <i className="bi bi-check-circle"></i>
         6 Monthly Kits (2 installments)
@@ -450,7 +472,7 @@ const MonthlyKitPage = () => {
     </p>
     <div className="d-flex justify-content-center">
       <button
-        className="fw-bold text-white px-5 rounded-3"
+        className="fw-bold text-white px-5 rounded-3" onClick={handleSubscribeClick}
         style={{
           minWidth: "84px",
           maxWidth: "480px",

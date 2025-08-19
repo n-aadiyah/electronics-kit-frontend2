@@ -1,20 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation   } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { CartContext } from "../context/CartContext";
 import CartModal from "../components/CartModal";
 import axios from "axios";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 const BASE_URL = process.env.REACT_APP_API_URL;
-
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { addToCart, cartItems } = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [lastAddedProductTitle, setLastAddedProductTitle] = useState("");
+const handleBack = () => {
+  if (location.state?.from) {
+    navigate(location.state.from); // go back to products
+  } else if (window.history.state && window.history.state.idx > 0) {
+    navigate(-1); // fallback to browser history
+  } else {
+    navigate("/products"); // ultimate fallback
+  }
+};
 
   // ✅ Check if product is in cart
   const isInCart = cartItems.some(item => item.productId === id);
@@ -63,10 +72,12 @@ const ProductDetail = () => {
     <div style={{ paddingTop: "70px" }}>
       <Navbar />
       <div className="container py-4">
-        <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
-           <i className="bi bi-layer-backward"></i>
-          Back
-        </button>
+<button 
+  className="btn btn-secondary mb-4" 
+  onClick={handleBack}
+>
+  <i className="bi bi-layer-backward"></i> Back
+</button>
 
         <div className="row">
           <div className="col-md-6 mb-4 mb-md-0">

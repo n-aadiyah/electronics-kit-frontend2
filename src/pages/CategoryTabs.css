@@ -1,0 +1,7 @@
+.description-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;   /* show only 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

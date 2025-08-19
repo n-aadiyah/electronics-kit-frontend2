@@ -72,15 +72,19 @@ const Products = () => {
     e.target.src = "/images/no-image.jpg"; // 👈 fallback from public/images/
   }}
 />
-                    <div className="card-body">
+<div className="card-body d-flex flex-column">
                       <h5 className="card-title">{product.title || product.name}</h5>
-                      <p className="card-text">{product.description}</p>
+  <p className="card-text description-truncate flex-grow-1">
+    {product.description}
+  </p>
                       <button
-                        className="btn custom-view-btn w-100 fw-bold"
-                        onClick={() => navigate(`/product/${product._id}`)}
-                      >
-                        View Details
-                      </button>
+    className="btn custom-view-btn w-100 fw-bold mt-auto"
+    onClick={() =>
+      navigate(`/product/${product._id}`, { state: { from: "/products" } })
+    }
+  >
+    View Details
+  </button>
                     </div>
                   </div>
                 </div>
