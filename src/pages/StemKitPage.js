@@ -15,7 +15,7 @@ const StemKitPage = () => {
   useEffect(() => {
     const fetchKits = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/api/stemkits`); // Corrected endpoint
+        const res = await axios.get(`${BASE_URL}/api/stemkits`);
         setKits(res.data);
       } catch (err) {
         console.error("Error fetching STEM kits:", err);
@@ -25,49 +25,61 @@ const StemKitPage = () => {
   }, []);
 
   const handleSubscribe = (kit, subscription) => {
-    // Add selected subscription to cart
     addToCart({ ...kit, selectedSubscription: subscription });
     navigate("/stemkit-checkout", { state: { selectedKit: kit, selectedSubscription: subscription } });
   };
 
   return (
     <div className="container mt-5 py-5">
-      <h2 className="mb-4 text-center">Monthly STEM Kit</h2>
+      <h2 className="mb-5 text-center">Monthly STEM Kits</h2>
 
       {kits.map((kit) => (
-        <div
-          key={kit._id}
-          className="card mx-auto mb-5"
-          style={{ maxWidth: "600px" }}
-        >
-          <img
-            src={kit.image}
-            className="card-img-top"
-            alt={kit.name}
-            style={{ maxHeight: "300px", objectFit: "contain" }}
-          />
-          <div className="card-body">
-            <h5 className="card-title">{kit.name}</h5>
-            <p className="card-text">{kit.description}</p>
+        <div key={kit._id} className="mb-5">
+          {/* Kit Image */}
+          <div className="text-center mb-3">
+            <img
+              src={kit.image}
+              alt={kit.name}
+              className="img-fluid rounded"
+              style={{ maxHeight: "300px", objectFit: "contain" }}
+            />
+          </div>
 
-            <h6 className="mt-3">Subscription Plans:</h6>
-            <ul className="list-group mb-3">
-              {kit.subscriptions.map((sub, idx) => (
-                <li
-                  key={idx}
-                  className="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <span>{sub.type}</span>
-                  <span>₹{sub.price}</span>
+          {/* Kit Details */}
+          <h4 className="text-center">{kit.name}</h4>
+          <p className="text-center text-muted mb-4">{kit.description}</p>
+
+          {/* Subscription Plans */}
+          <div className="row g-3 justify-content-center">
+            {kit.subscriptions.map((sub, idx) => (
+              <div key={idx} className="col-md-4">
+                <div className="p-3 border rounded text-center h-100">
+                  <h5 className="fw-bold">{sub.type}</h5>
+                  <p className="display-6 fw-bold text-dark">₹{sub.price}</p>
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn w-100 mb-3"
+                    style={{ backgroundColor: "#ff4d4d", color: "#fff" }}
                     onClick={() => handleSubscribe(kit, sub)}
                   >
                     Subscribe Now
                   </button>
-                </li>
-              ))}
-            </ul>
+                  <ul className="list-unstyled small text-start">
+                    <li className="mb-2">
+                      <i className="bi bi-check-circle text-primary me-2"></i>
+                      Monthly Kit Included
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-check-circle text-primary me-2"></i>
+                      Access to Themes
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-check-circle text-primary me-2"></i>
+                      Online Support
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ))}
