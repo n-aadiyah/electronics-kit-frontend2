@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Logo Section */}
         <Link to="/" className="logo-link">
-          <img src="images/logo.png" alt="Logo" className="navbar-logo" />
+          <img src="/images/logo.png" alt="Logo" className="navbar-logo" />
         </Link>
 
         {/* Navigation Links */}

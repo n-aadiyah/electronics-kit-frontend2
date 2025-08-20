@@ -69,7 +69,7 @@ const handleBack = () => {
   } = product;
 
   return (
-    <div style={{ paddingTop: "70px" }}>
+    <div style={{ paddingTop: "90px" }}>
       <Navbar />
       <div className="container py-4">
 <button 

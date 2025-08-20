@@ -90,7 +90,7 @@ const MyOrdersPage = () => {
 
   return (
     <div className="container pt-5 mt-5">
-      <h3 className="mb-5">My Orders</h3>
+       <h2 className="fw-bold text-dark mb-4">My Orders</h2>
 
       {orders.map((order) => (
         <div key={order._id} className="card mt-5 mb-5 p-4 shadow-sm">

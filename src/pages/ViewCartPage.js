@@ -191,8 +191,8 @@ const ViewCartPage = () => {
                     className="btn fw-bold rounded-pill px-3 py-1"
                     onClick={() => removeFromCart(item._id)}
                     style={{
-                      backgroundColor: "#f0f0f0",
-                      color: "#000",
+                      backgroundColor: "#0e0e0eff",
+                      color: "#f0f0f0",
                       fontSize: "0.9rem",
                       border: "none",
                     }}
@@ -240,12 +240,11 @@ const ViewCartPage = () => {
 
             <button
               className="btn rounded-pill mt-3 w-100"
-              style={{
-                backgroundColor: "#000",
-                color: "#fff",
-                fontWeight: "bold",
-                padding: "10px",
-                border: "none",
+               style={{
+                backgroundColor: "#ff6600",
+                border: "2px solid #ff6600",
+                color: "black",
+                fontWeight: "800",
               }}
               onClick={handlePlaceOrder}
             >
