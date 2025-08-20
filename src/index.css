@@ -16,19 +16,48 @@ body, html {
 
 /* Gradient Buttons */
 .custom-view-btn {
-  background: #0c0e0d;
-  background: -webkit-linear-gradient(to right, #373B44, #73C8A9);
-  background: linear-gradient(to right, #373B44, #73C8A9);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#B89C93", endColorstr="#8E6865", GradientType=1);
-  color: rgb(203, 202, 201) !important;
+  background: hsla(167, 68%, 73%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(167, 68%, 73%, 1) 0%,
+    hsla(178, 59%, 48%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(167, 68%, 73%, 1) 0%,
+    hsla(178, 59%, 48%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(167, 68%, 73%, 1) 0%,
+    hsla(178, 59%, 48%, 1) 100%
+  );
+
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr="#8DE9D5",
+    endColorstr="#32C4C0",
+    GradientType=1
+  );
+
+  color: #0c0c0c !important;
   font-weight: bold !important;
   border: none !important;
   transition: 0.3s ease;
 }
+
+/* Hover Effect */
 .custom-view-btn:hover {
-  background-color: #467c66 !important;
-  color: #000000 !important;
+  background: linear-gradient(
+    90deg,
+    hsla(178, 59%, 48%, 1) 0%,
+    hsla(167, 68%, 73%, 1) 100%
+  );
+  color: #e21a1a !important;
 }
+
 
 .my-account-btn {
   background: hsla(180, 13%, 58%, 1);
@@ -89,4 +118,24 @@ p {
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
   }
+}
+/* For active tab */
+.nav-tabs .nav-link.active {
+  background-color: #ff6600 !important;
+  color: #fff !important;
+  border-color: #ff6600 #ff6600 #fff !important;
+  font-weight: 600;
+  border-radius: 6px 6px 0 0;
+}
+
+/* For inactive tabs (optional styling) */
+.nav-tabs .nav-link {
+  color: #555;
+  font-weight: 500;
+}
+/* Inactive tab on hover (only text color changes) */
+.nav-tabs .nav-link:hover {
+  color: #ff6600 !important;
+  background-color: transparent !important;
+  border: 0.5 !important;
 }

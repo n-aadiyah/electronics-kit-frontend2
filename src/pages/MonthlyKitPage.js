@@ -53,7 +53,7 @@ const MonthlyKitPage = () => {
          <div className="w-100 d-flex justify-content-left">
  <button
   className="btn px-4 py-2 fw-bold text-white"
-  style={{ backgroundColor: "#d67215ff", border: "none" }}
+  style={{ backgroundColor: "#ff6600", border: "none" }}
   onClick={handleSubscribeClick}   // ✅ added this
 >
   Subscribe Now
@@ -477,7 +477,7 @@ const MonthlyKitPage = () => {
           minWidth: "84px",
           maxWidth: "480px",
           height: "48px",
-          backgroundColor: "#f48925",
+          backgroundColor: "#ff6600",
           border: "none"
         }}
       >

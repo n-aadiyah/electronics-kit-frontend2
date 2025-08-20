@@ -157,12 +157,13 @@ const StemKitCheckoutPage = () => {
               value={shippingDetails.phone}
               onChange={handleChange}
             />
-            <button
-              type="submit"
-              className="btn btn-dark rounded-pill w-100 mt-3"
-            >
-              Complete Purchase
-            </button>
+          <button
+  type="submit"
+  className="btn rounded-pill w-100 mt-3"
+  style={{ backgroundColor: '#ff6600', border: '2px solid #ff6600', color: 'black', fontWeight: '700' }}
+>
+  Complete Purchase
+</button>
           </form>
         </div>
 

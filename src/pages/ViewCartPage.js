@@ -1,3 +1,4 @@
+// src/pages/ViewCartPage.js
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
@@ -6,7 +7,8 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const ViewCartPage = () => {
-  const { cartItems, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, updateQuantity, clearCart } =
+    useContext(CartContext);
   const navigate = useNavigate();
 
   const [shippingInfo, setShippingInfo] = useState({
@@ -22,10 +24,13 @@ const ViewCartPage = () => {
     setShippingInfo({ ...shippingInfo, [e.target.name]: e.target.value });
   };
 
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  // ✅ Calculate total for both product types (Regular + Stemkit)
+  const total = cartItems.reduce((sum, item) => {
+    const price = item.selectedSubscription
+      ? item.selectedSubscription.price // STEM kit subscription price
+      : item.price || 0; // Regular product price
+    return sum + price * item.quantity;
+  }, 0);
 
   const handlePlaceOrder = async () => {
     const token = localStorage.getItem("token");
@@ -35,29 +40,63 @@ const ViewCartPage = () => {
       return navigate("/login");
     }
 
-    const items = cartItems.map((item) => ({
-      productId: item._id,
-      quantity: item.quantity,
-    }));
-
-    const orderData = {
-      items,
-      totalAmount: total,
-      shippingInfo,
-    };
-
     try {
-      await axios.post(`${BASE_URL}/api/orders`, orderData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      let results = [];
 
-      alert("Order placed successfully!");
-      clearCart();
-      navigate("/MyOrders");
+      // ✅ 1. Place Regular Product Orders
+      const regularOrders = cartItems.filter((item) => !item.selectedSubscription);
+      if (regularOrders.length > 0) {
+        const orderPayload = {
+          items: regularOrders.map((item) => ({
+            productId: item._id || item.productId,
+            quantity: item.quantity,
+          })),
+          totalAmount: regularOrders.reduce(
+            (sum, item) => sum + (item.price || 0) * item.quantity,
+            0
+          ),
+          shippingInfo,
+        };
+
+        console.log("📦 Sending Regular Order:", orderPayload);
+
+        const res1 = await axios.post(
+          `${BASE_URL}/api/orders`,
+          orderPayload,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        results.push(res1.data);
+      }
+
+      // ✅ 2. Place STEM Kit Subscription Orders
+      const stemkitOrders = cartItems.filter((item) => item.selectedSubscription);
+      for (const kit of stemkitOrders) {
+        const stemkitPayload = {
+          stemKitId: kit._id,
+          subscriptionType: kit.selectedSubscription.type,
+          price: kit.selectedSubscription.price,
+          shippingInfo,
+        };
+
+        console.log("🎁 Sending STEM Kit Order:", stemkitPayload);
+
+        const res2 = await axios.post(
+          `${BASE_URL}/api/stemkit-orders`,
+          stemkitPayload,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        results.push(res2.data);
+      }
+
+      if (results.length > 0) {
+        alert("✅ Order(s) placed successfully!");
+        clearCart();
+        navigate("/MyOrders");
+      } else {
+        alert("⚠️ No items to order.");
+      }
     } catch (error) {
-      console.error("Order failed:", error.response?.data || error.message);
+      console.error("❌ Order failed:", error.response?.data || error.message);
       alert(
         error.response?.data?.message || "Failed to place order. Try again."
       );
@@ -73,73 +112,94 @@ const ViewCartPage = () => {
             Shopping Bag ({cartItems.length})
           </h2>
 
-          {cartItems.map((item) => (
-            <div key={item._id} className="bg-light p-3 rounded mb-3">
-              <div className="d-flex align-items-center justify-content-between">
-                <div className="d-flex align-items-center gap-3">
-                  <img
-                    src={`/${item.image}`} // ✅ Correct image path for public folder
-                    alt={item.name}
-                    width="56"
-                    height="56"
-                    className="rounded"
-                    style={{ objectFit: "cover" }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/images/no-image.jpg"; // ✅ fallback image
-                    }}
-                  />
-                  <div>
-                    <p className="fw-semibold mb-1">{item.name}</p>
-                    <p className="text-muted mb-0">₹{item.price}</p>
+          {cartItems.map((item) => {
+            const displayPrice = item.selectedSubscription
+              ? item.selectedSubscription.price
+              : item.price || 0;
+
+            return (
+              <div
+                key={item._id + (item.selectedSubscription?.type || "")}
+                className="bg-light p-3 rounded mb-3"
+              >
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center gap-3">
+                    <img
+                      src={item.image || item.kitImage}
+                      alt={item.name}
+                      width="56"
+                      height="56"
+                      className="rounded"
+                      style={{ objectFit: "cover" }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/images/no-image.jpg";
+                      }}
+                    />
+                    <div>
+                      <p className="fw-semibold mb-1">{item.name}</p>
+                      {item.selectedSubscription ? (
+                        <p className="text-muted mb-0">
+                          {item.selectedSubscription.type} - ₹{displayPrice}
+                        </p>
+                      ) : (
+                        <p className="text-muted mb-0">₹{displayPrice}</p>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Quantity Controls (only for regular products) */}
+                  {!item.selectedSubscription && (
+                    <div className="d-flex align-items-center gap-3">
+                      <button
+                        className="btn btn-sm rounded-circle border bg-light fw-bold"
+                        style={{ width: "32px", height: "32px" }}
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity - 1)
+                        }
+                        disabled={item.quantity <= 1}
+                      >
+                        −
+                      </button>
+
+                      <span
+                        className="fw-semibold text-center"
+                        style={{ width: "30px" }}
+                      >
+                        {item.quantity}
+                      </span>
+
+                      <button
+                        className="btn btn-sm rounded-circle border bg-light fw-bold"
+                        style={{ width: "32px", height: "32px" }}
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity + 1)
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
                 </div>
 
-                {/* Quantity Controls */}
-                <div className="d-flex align-items-center gap-3">
+                {/* Remove Button */}
+                <div className="d-flex justify-content-end mt-2">
                   <button
-                    className="btn btn-sm rounded-circle border bg-light fw-bold"
-                    style={{ width: "32px", height: "32px" }}
-                    onClick={() => updateQuantity(item._id, item.quantity - 1)}
-                    disabled={item.quantity <= 1}
+                    className="btn fw-bold rounded-pill px-3 py-1"
+                    onClick={() => removeFromCart(item._id)}
+                    style={{
+                      backgroundColor: "#f0f0f0",
+                      color: "#000",
+                      fontSize: "0.9rem",
+                      border: "none",
+                    }}
                   >
-                    −
-                  </button>
-
-                  <span
-                    className="fw-semibold text-center"
-                    style={{ width: "30px" }}
-                  >
-                    {item.quantity}
-                  </span>
-
-                  <button
-                    className="btn btn-sm rounded-circle border bg-light fw-bold"
-                    style={{ width: "32px", height: "32px" }}
-                    onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                  >
-                    +
+                    Remove
                   </button>
                 </div>
               </div>
-
-              {/* Remove Button */}
-              <div className="d-flex justify-content-end mt-2">
-                <button
-                  className="btn fw-bold rounded-pill px-3 py-1"
-                  onClick={() => removeFromCart(item._id)}
-                  style={{
-                    backgroundColor: "#f0f0f0",
-                    color: "#000",
-                    fontSize: "0.9rem",
-                    border: "none",
-                  }}
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Right Section - Summary & Shipping Form */}

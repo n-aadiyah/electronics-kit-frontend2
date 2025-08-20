@@ -31,8 +31,21 @@ const StemKitPage = () => {
 
   return (
     <div className="container mt-5 py-5">
-      <h2 className="mb-5 text-center">Monthly STEM Kits</h2>
-
+<h2
+  className="text-center mb-5"
+  style={{
+    fontFamily: 'Exo 2, sans-serif',
+    fontSize: '3rem',                    // Adjust the size as needed
+    fontWeight: '700',
+    lineHeight: '1.1',
+    letterSpacing: '0.1em',
+    wordSpacing: '0.5em',
+  }}
+>
+  MAKLAB<span></span>
+  <span style={{ color: '#ff6600' }}>STEM</span>
+  EXPLORER
+</h2>
       {kits.map((kit) => (
         <div key={kit._id} className="mb-5">
           {/* Kit Image */}
@@ -58,24 +71,28 @@ const StemKitPage = () => {
                   <p className="display-6 fw-bold text-dark">₹{sub.price}</p>
                   <button
                     className="btn w-100 mb-3"
-                    style={{ backgroundColor: "#ff4d4d", color: "#fff" }}
+                    style={{ backgroundColor: "#ff6600", color: "#fff" }}
                     onClick={() => handleSubscribe(kit, sub)}
                   >
                     Subscribe Now
                   </button>
                   <ul className="list-unstyled small text-start">
                     <li className="mb-2">
-                      <i className="bi bi-check-circle text-primary me-2"></i>
-                      Monthly Kit Included
-                    </li>
-                    <li className="mb-2">
-                      <i className="bi bi-check-circle text-primary me-2"></i>
-                      Access to Themes
-                    </li>
-                    <li className="mb-2">
-                      <i className="bi bi-check-circle text-primary me-2"></i>
-                      Online Support
-                    </li>
+    <i className="bi bi-check-circle me-2" style={{ color: '#ff6600' }}></i>
+    12 Diy stem kits 
+  </li>
+  <li className="mb-2">
+    <i className="bi bi-check-circle me-2" style={{ color: '#ff6600' }}></i>
+    12 monthly themes 
+  </li>
+  <li className="mb-2">
+    <i className="bi bi-check-circle me-2" style={{ color: '#ff6600' }}></i>
+    Online Support
+  </li>
+  <li className="mb-2">
+    <i className="bi bi-check-circle me-2" style={{ color: '#ff6600' }}></i>
+    for students of grade 5 to 12 
+  </li>
                   </ul>
                 </div>
               </div>

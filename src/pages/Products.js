@@ -48,11 +48,12 @@ const Products = () => {
       <main className="container py-5">
         <h2 className="text-center mb-3 fw-bold">All Electronics Kits</h2>
 
-        <CategoryTabs
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+          <CategoryTabs
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+       
 
         {loading ? (
           <div className="text-center py-5 text-muted">Loading products...</div>

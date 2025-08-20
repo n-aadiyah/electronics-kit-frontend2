@@ -48,6 +48,7 @@ nav {
 
 /* Custom nav link class to avoid Bootstrap conflicts */
 .nav-link-custom {
+  
   position: relative;
   color: white;
   font-weight: 600;

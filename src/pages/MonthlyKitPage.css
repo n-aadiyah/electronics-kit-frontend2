@@ -15,14 +15,14 @@ section, .container, .row {
 
 /* Buttons */
 .custom-btn {
-  background-color: #2586f4;
+  background-color: #ff6600;
   color: white;
   font-weight: bold;
   border-radius: 12px;
   transition: background-color 0.2s ease-in-out;
 }
 .custom-btn:hover {
-  background-color: #1f6fd1;
+  background-color: #b95818;
   color: white;
 }
 
@@ -64,19 +64,19 @@ section, .container, .row {
 
 /* Hover effect */
 .subscription-card:hover {
-  border-color: #d86a1c; /* Professional blue border */
+  border-color:  #ff6600; /* Professional blue border */
   box-shadow: 0 4px 12px rgba(228, 247, 84, 0.2); /* Matching shadow */
 }
 
 .badge-popular {
-  background-color: #ff7f50;
+  background-color:  #ff6600;
   color: #fff;
   font-size: 0.75rem;
   padding: 4px 8px;
   border-radius: 8px;
 }
 .btn-subscribe {
-  background-color: #ff4d4d;
+  background-color:  #ff6600;
   color: #fff;
   font-weight: bold;
   padding: 10px;
@@ -85,7 +85,7 @@ section, .container, .row {
   transition: background-color 0.2s ease-in-out;
 }
 .btn-subscribe:hover {
-  background-color: #b65011;
+  background-color:  #a1531f;
 }
 .feature-item {
   display: flex;
@@ -105,7 +105,7 @@ section, .container, .row {
   position: absolute;
   top: 2px;
   right: 8px;
-  background-color: #de4e4e;
+  background-color: #ff6600;
   color: white;
   padding: 4px 10px;
   font-size: 0.8rem;
