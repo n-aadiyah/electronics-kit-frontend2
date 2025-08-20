@@ -16,13 +16,13 @@ const Home = () => {
               <h1 className="fw-bold display-2 mb-4 mt-0">
                 From Curiosity to Creation
               </h1>
-              <Button
-                size="lg"
-                className="fw-bold custom-btn"
-                href="/products"
-              >
-                Start Building
-              </Button>
+             <Button
+  size="lg"
+  className="fw-bold custom-btn"
+  onClick={() => navigate("/products")}
+>
+  Start Building
+</Button>
             </Col>
 
             {/* Image */}
