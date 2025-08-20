@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import OrderNotification from "../components/OrderNotification"; // ✅ Import notification
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
@@ -23,6 +24,9 @@ const StemKitCheckoutPage = () => {
   });
 
   const [subtotal, setSubtotal] = useState(subscriptionData?.price || 0);
+
+  // ✅ State for notification
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     if (!stemKitData || !subscriptionData) {
@@ -51,20 +55,16 @@ const StemKitCheckoutPage = () => {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("You must be logged in to place an order.");
       navigate("/auth?msg=login-required");
       return;
     }
 
-    // Correct payload to match backend
     const orderData = {
       stemKitId: stemKitData._id,
       subscriptionType: subscriptionData.type,
       price: subtotal,
       shippingInfo: { ...shippingDetails },
     };
-      // ✅ Add this line to check the API URL
-  console.log("BASE_URL:", BASE_URL);
 
     try {
       const res = await fetch(`${BASE_URL}/api/stemkit-orders`, {
@@ -79,8 +79,8 @@ const StemKitCheckoutPage = () => {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ STEM Kit order placed successfully!");
-        navigate("/myorders");
+        // ✅ Show notification instead of alert
+        setShowNotification(true);
       } else {
         alert("❌ Failed to place order: " + data.message);
       }
@@ -89,11 +89,24 @@ const StemKitCheckoutPage = () => {
     }
   };
 
+  const handleNotificationDismiss = () => setShowNotification(false);
+  const handleNotificationView = () => navigate("/myorders");
+
   if (!stemKitData || !subscriptionData) return null;
 
   return (
     <div className="container pt-5" style={{ marginTop: "70px" }}>
+      {/* ✅ Notification */}
+      {showNotification && (
+        <OrderNotification
+          message="✅ STEM Kit order placed successfully!"
+          onDismiss={handleNotificationDismiss}
+          onView={handleNotificationView}
+        />
+      )}
+
       <div className="row">
+        {/* Shipping Form */}
         <div className="col-lg-8 col-md-8 mb-4">
           <form onSubmit={handleSubmit}>
             <h3 className="mb-3">Shipping Information</h3>
@@ -157,16 +170,23 @@ const StemKitCheckoutPage = () => {
               value={shippingDetails.phone}
               onChange={handleChange}
             />
-          <button
-  type="submit"
-  className="btn rounded-pill w-100 mt-3"
-  style={{ backgroundColor: '#ff6600', border: '2px solid #ff6600', color: 'black', fontWeight: '700' }}
->
-  Complete Purchase
-</button>
+
+            <button
+              type="submit"
+              className="btn rounded-pill w-100 mt-3"
+              style={{
+                backgroundColor: "#ff6600",
+                border: "2px solid #ff6600",
+                color: "black",
+                fontWeight: "700",
+              }}
+            >
+              Complete Purchase
+            </button>
           </form>
         </div>
 
+        {/* Order Summary */}
         <div className="col-md-4 mt-4 mt-md-0">
           <h3 className="mb-2">Order Summary</h3>
           <div className="d-flex align-items-center mb-3">

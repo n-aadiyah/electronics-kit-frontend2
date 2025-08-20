@@ -22,12 +22,12 @@ const AuthPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-     setError(null);
+    setError(null);
   };
 
   // ✅ Toggle between login/signup
   const toggleForm = () => {
-      setFormData({ username: "", email: "", password: "" });
+    setFormData({ username: "", email: "", password: "" });
     setError(null);
     setIsLogin((prev) => !prev);
   };
@@ -43,19 +43,26 @@ const AuthPage = () => {
     try {
       const response = await axios.post(endpoint, formData);
       console.log("✅ Auth Success:", response.data);
+
       if (isLogin) {
         // Normalize user data
         const user = {
-          name: response.data.user?.name || response.data.user?.username || "User",
+          name:
+            response.data.user?.name ||
+            response.data.user?.username ||
+            "User",
           email: response.data.user?.email,
           token: response.data.token,
         };
 
         login(user);
         localStorage.setItem("token", user.token);
-        navigate("/");
+
+        // ✅ Navigate after login success
+        setTimeout(() => navigate("/"), 500);
       } else {
-        alert("✅ Registered successfully! Please log in.");
+        // ✅ Registration success → switch to login form
+        alert("✅ Account created successfully! Please log in.");
         setIsLogin(true);
       }
     } catch (error) {
@@ -79,9 +86,10 @@ const AuthPage = () => {
           style={{ maxWidth: "900px" }}
         >
           <div className="col-md-7 bg-black px-5 py-4">
-  <h1 className="fw-bold pb-3 text-white">
-    {isLogin ? "Welcome back!" : "Create your account"}
-  </h1>
+            <h1 className="fw-bold pb-3" style={{ color: "#ff6600" }}>
+              {isLogin ? "Welcome back!" : "Create your account"}
+            </h1>
+
             <form onSubmit={handleSubmit}>
               {!isLogin && (
                 <div className="mb-3 text-white">
@@ -124,11 +132,15 @@ const AuthPage = () => {
                 />
               </div>
 
-      {isLogin && (
-    <a href="/forgot-password" className="d-block mt-2" style={{ color: "#ffcc66" }}>
-      Forgot your password?
-    </a>
-  )}
+              {isLogin && (
+                <a
+                  href="/forgot-password"
+                  className="d-block mt-2"
+                  style={{ color: "#ffcc66" }}
+                >
+                  Forgot your password?
+                </a>
+              )}
 
               <button
                 type="submit"
@@ -152,10 +164,10 @@ const AuthPage = () => {
             )}
           </div>
 
-       <div className="col-md-5 bg-white d-flex flex-column justify-content-center align-items-center p-4">
-  <h2 className="fw-bold text-center">
-    {isLogin ? "Don't have an account?" : "Already have an account?"}
-  </h2>
+          <div className="col-md-5 bg-white d-flex flex-column justify-content-center align-items-center p-4">
+            <h2 className="fw-bold text-center">
+              {isLogin ? "Don't have an account?" : "Already have an account?"}
+            </h2>
             <button
               className="btn rounded-pill mt-4 w-100"
               style={{

@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import OrderNotification from "../components/OrderNotification";
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
@@ -9,6 +10,8 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 const ViewCartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart } =
     useContext(CartContext);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
   const navigate = useNavigate();
 
   const [shippingInfo, setShippingInfo] = useState({
@@ -27,8 +30,8 @@ const ViewCartPage = () => {
   // ✅ Calculate total for both product types (Regular + Stemkit)
   const total = cartItems.reduce((sum, item) => {
     const price = item.selectedSubscription
-      ? item.selectedSubscription.price // STEM kit subscription price
-      : item.price || 0; // Regular product price
+      ? item.selectedSubscription.price
+      : item.price || 0;
     return sum + price * item.quantity;
   }, 0);
 
@@ -89,9 +92,11 @@ const ViewCartPage = () => {
       }
 
       if (results.length > 0) {
-        alert("✅ Order(s) placed successfully!");
         clearCart();
-        navigate("/MyOrders");
+        setNotificationMessage(
+          "You're happy now? Your order is successfully placed and on its way!"
+        );
+        setShowNotification(true);
       } else {
         alert("⚠️ No items to order.");
       }
@@ -148,7 +153,6 @@ const ViewCartPage = () => {
                     </div>
                   </div>
 
-                  {/* Quantity Controls (only for regular products) */}
                   {!item.selectedSubscription && (
                     <div className="d-flex align-items-center gap-3">
                       <button
@@ -182,7 +186,6 @@ const ViewCartPage = () => {
                   )}
                 </div>
 
-                {/* Remove Button */}
                 <div className="d-flex justify-content-end mt-2">
                   <button
                     className="btn fw-bold rounded-pill px-3 py-1"
@@ -251,6 +254,18 @@ const ViewCartPage = () => {
           </div>
         </div>
       </div>
+
+      {/* ✅ Order Notification */}
+      {showNotification && (
+        <OrderNotification
+          message={notificationMessage}
+          onView={() => {
+            setShowNotification(false);
+            navigate("/MyOrders");
+          }}
+          onDismiss={() => setShowNotification(false)}
+        />
+      )}
     </div>
   );
 };
