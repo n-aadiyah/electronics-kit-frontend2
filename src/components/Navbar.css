@@ -98,3 +98,10 @@ color: #8f5a36;
   background-color: #e65c00 !important; /* darker orange */
   border-color: #e65c00 !important;
 }
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+}
