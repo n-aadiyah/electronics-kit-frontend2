@@ -21,7 +21,7 @@ const handleBack = () => {
   } else if (window.history.state && window.history.state.idx > 0) {
     navigate(-1); // fallback to browser history
   } else {
-    navigate("/products"); // ultimate fallback
+    navigate("./products"); // ultimate fallback
   }
 };
 
