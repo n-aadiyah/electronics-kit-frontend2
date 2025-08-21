@@ -100,16 +100,18 @@ color: #8f5a36;
 }
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    gap: 0.4rem;
-    align-items: flex-start;
+    flex-direction: column;   /* Stack nav items vertically */
+    gap: 0.5rem;              /* Space between nav items */
+  align-items: center;         /* Center links under logo */
+    padding: 2rem 0;  }
 
-  }
-}
-@media (max-width: 768px) {
   .navbar-logo {
-    height: 160px; /* smaller logo for mobile */
-    margin-top: 0;
+    height: 200px;            /* Smaller logo for mobile */
+    margin-top: -30px; /* Adjusted top margin for mobile */
     position: relative;
+  }
+
+  .nav-link-custom {
+    font-size: 0.8rem;        /* Smaller font size for mobile */
   }
 }
